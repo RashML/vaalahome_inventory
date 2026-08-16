@@ -1,0 +1,13 @@
+{
+  "@@locale": "en",
+  "appTitle": "Inventory App",
+  "loginEmailLabel": "Email",
+  "loginPasswordLabel": "Password",
+  "loginCta": "Login",
+  "loginError": "Incorrect email or password.",
+  "homeTitle": "Home",
+  "scanTitle": "Scan",
+  "itemCreateTitle": "Create item",
+  "itemDetailsTitle": "Item {itemId}",
+  "itemQrShareTitle": "Share QR for {itemId}"
+}

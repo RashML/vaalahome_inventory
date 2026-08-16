@@ -1,0 +1,53 @@
+{
+  "@@locale": "fa",
+  "appTitle": "انبارداری",
+  "@appTitle": {
+    "description": "The application title."
+  },
+  "loginEmailLabel": "ایمیل",
+  "@loginEmailLabel": {
+    "description": "Label of the email field on the login page."
+  },
+  "loginPasswordLabel": "رمز عبور",
+  "@loginPasswordLabel": {
+    "description": "Label of the password field on the login page."
+  },
+  "loginCta": "ورود",
+  "@loginCta": {
+    "description": "Label of the login page's submit button."
+  },
+  "loginError": "ایمیل یا رمز عبور نادرست است.",
+  "@loginError": {
+    "description": "Shown when login fails."
+  },
+  "homeTitle": "خانه",
+  "@homeTitle": {
+    "description": "Title of the home page."
+  },
+  "scanTitle": "اسکن",
+  "@scanTitle": {
+    "description": "Title of the QR/barcode scan page."
+  },
+  "itemCreateTitle": "افزودن کالا",
+  "@itemCreateTitle": {
+    "description": "Title of the item-creation form page."
+  },
+  "itemDetailsTitle": "کالا {itemId}",
+  "@itemDetailsTitle": {
+    "description": "Title of the item details page.",
+    "placeholders": {
+      "itemId": {
+        "type": "String"
+      }
+    }
+  },
+  "itemQrShareTitle": "اشتراک‌گذاری QR برای {itemId}",
+  "@itemQrShareTitle": {
+    "description": "Title of the item QR-share page.",
+    "placeholders": {
+      "itemId": {
+        "type": "String"
+      }
+    }
+  }
+}
