@@ -152,11 +152,221 @@ abstract class AppLocalizations {
   /// **'کالا {itemId}'**
   String itemDetailsTitle(String itemId);
 
-  /// Title of the item QR-share page.
+  /// Label of the share button on the item QR page.
   ///
   /// In fa, this message translates to:
-  /// **'اشتراک‌گذاری QR برای {itemId}'**
-  String itemQrShareTitle(String itemId);
+  /// **'اشتراک‌گذاری'**
+  String get itemQrShareCta;
+
+  /// Label of the print button on the item QR page.
+  ///
+  /// In fa, this message translates to:
+  /// **'چاپ'**
+  String get itemQrPrintCta;
+
+  /// Shown when sharing the item QR fails.
+  ///
+  /// In fa, this message translates to:
+  /// **'اشتراک‌گذاری QR ناموفق بود.'**
+  String get itemQrShareError;
+
+  /// Shown when printing the item QR fails.
+  ///
+  /// In fa, this message translates to:
+  /// **'چاپ QR ناموفق بود.'**
+  String get itemQrPrintError;
+
+  /// Title of the basic-details section of the item form.
+  ///
+  /// In fa, this message translates to:
+  /// **'اطلاعات پایه'**
+  String get itemFormSectionBasics;
+
+  /// Label of the item name field.
+  ///
+  /// In fa, this message translates to:
+  /// **'نام'**
+  String get itemFormNameLabel;
+
+  /// Label of the company field.
+  ///
+  /// In fa, this message translates to:
+  /// **'شرکت'**
+  String get itemFormCompanyLabel;
+
+  /// Placeholder of the company dropdown before a selection is made.
+  ///
+  /// In fa, this message translates to:
+  /// **'انتخاب شرکت'**
+  String get itemFormCompanyHint;
+
+  /// Placeholder of the company dropdown's search field.
+  ///
+  /// In fa, this message translates to:
+  /// **'جستجوی شرکت'**
+  String get itemFormCompanySearchHint;
+
+  /// Label of the bundle field.
+  ///
+  /// In fa, this message translates to:
+  /// **'بسته'**
+  String get itemFormBundleLabel;
+
+  /// Placeholder of the bundle dropdown before a selection is made.
+  ///
+  /// In fa, this message translates to:
+  /// **'انتخاب بسته'**
+  String get itemFormBundleHint;
+
+  /// Placeholder of the bundle dropdown while no company is selected yet.
+  ///
+  /// In fa, this message translates to:
+  /// **'ابتدا شرکت را انتخاب کنید'**
+  String get itemFormBundleHintNoCompany;
+
+  /// Placeholder of the bundle dropdown's search field.
+  ///
+  /// In fa, this message translates to:
+  /// **'جستجوی بسته'**
+  String get itemFormBundleSearchHint;
+
+  /// Label of the color code field.
+  ///
+  /// In fa, this message translates to:
+  /// **'کد رنگ'**
+  String get itemFormColorLabel;
+
+  /// Placeholder showing the expected hex color format.
+  ///
+  /// In fa, this message translates to:
+  /// **'#FF8800'**
+  String get itemFormColorHint;
+
+  /// Title of the size/dimension section of the item form.
+  ///
+  /// In fa, this message translates to:
+  /// **'ابعاد'**
+  String get itemFormSectionSize;
+
+  /// Segmented option for entering size as width and height.
+  ///
+  /// In fa, this message translates to:
+  /// **'عرض × ارتفاع'**
+  String get itemFormSizeTypeSize;
+
+  /// Segmented option for entering size as an area.
+  ///
+  /// In fa, this message translates to:
+  /// **'مساحت'**
+  String get itemFormSizeTypeArea;
+
+  /// Label of the width field.
+  ///
+  /// In fa, this message translates to:
+  /// **'عرض'**
+  String get itemFormWidthLabel;
+
+  /// Label of the height field.
+  ///
+  /// In fa, this message translates to:
+  /// **'ارتفاع'**
+  String get itemFormHeightLabel;
+
+  /// Label of the area field.
+  ///
+  /// In fa, this message translates to:
+  /// **'مساحت (متر مربع)'**
+  String get itemFormAreaLabel;
+
+  /// Title of the pricing section of the item form.
+  ///
+  /// In fa, this message translates to:
+  /// **'قیمت‌گذاری'**
+  String get itemFormSectionPricing;
+
+  /// Subtitle above the buy-price amount/currency fields.
+  ///
+  /// In fa, this message translates to:
+  /// **'قیمت خرید'**
+  String get itemFormBuyPriceSubtitle;
+
+  /// Subtitle above the sell-price amount/currency fields.
+  ///
+  /// In fa, this message translates to:
+  /// **'قیمت فروش'**
+  String get itemFormSellPriceSubtitle;
+
+  /// Label of a price amount field.
+  ///
+  /// In fa, this message translates to:
+  /// **'مبلغ'**
+  String get itemFormAmountLabel;
+
+  /// Label of a currency field.
+  ///
+  /// In fa, this message translates to:
+  /// **'ارز'**
+  String get itemFormCurrencyLabel;
+
+  /// Placeholder of a currency dropdown before a selection is made.
+  ///
+  /// In fa, this message translates to:
+  /// **'انتخاب ارز'**
+  String get itemFormCurrencyHint;
+
+  /// Placeholder of a currency dropdown's search field.
+  ///
+  /// In fa, this message translates to:
+  /// **'جستجوی ارز'**
+  String get itemFormCurrencySearchHint;
+
+  /// Label of the item form's submit button.
+  ///
+  /// In fa, this message translates to:
+  /// **'ثبت کالا'**
+  String get itemFormSubmitCta;
+
+  /// Validation message for an empty required field.
+  ///
+  /// In fa, this message translates to:
+  /// **'این فیلد الزامی است.'**
+  String get itemFormRequiredField;
+
+  /// Validation message for a numeric field with an invalid value.
+  ///
+  /// In fa, this message translates to:
+  /// **'عدد معتبر وارد کنید.'**
+  String get itemFormInvalidNumber;
+
+  /// Validation message for an invalid hex color code.
+  ///
+  /// In fa, this message translates to:
+  /// **'رنگ هگز معتبر وارد کنید، مثلاً #FF8800.'**
+  String get itemFormInvalidColor;
+
+  /// Shown when the item form fails to load its dropdown data.
+  ///
+  /// In fa, this message translates to:
+  /// **'بارگذاری اطلاعات فرم ناموفق بود.'**
+  String get itemFormLoadError;
+
+  /// Shown when creating the item fails.
+  ///
+  /// In fa, this message translates to:
+  /// **'ثبت کالا ناموفق بود.'**
+  String get itemFormCreateError;
+
+  /// Shown in a dropdown's search list when no items match.
+  ///
+  /// In fa, this message translates to:
+  /// **'نتیجه‌ای یافت نشد.'**
+  String get itemFormNoResultFound;
+
+  /// Label of the retry button shown after a load error.
+  ///
+  /// In fa, this message translates to:
+  /// **'تلاش مجدد'**
+  String get itemFormRetryCta;
 }
 
 class _AppLocalizationsDelegate

@@ -1,6 +1,6 @@
 import 'package:pocketbase/pocketbase.dart';
 
-import '../models/user.dart';
+import 'package:inventory_app/features/auth/models/user.dart';
 import 'auth_repository.dart';
 
 /// [AuthRepository] implementation backed by PocketBase's auth store.

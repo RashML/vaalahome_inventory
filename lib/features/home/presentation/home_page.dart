@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../l10n/app_localizations.dart';
+import 'package:inventory_app/l10n/app_localizations.dart';
 
 class HomePage extends StatelessWidget {
   static const path = '/home';

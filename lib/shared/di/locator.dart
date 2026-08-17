@@ -1,18 +1,18 @@
 import 'package:get_it/get_it.dart';
 import 'package:pocketbase/pocketbase.dart';
 
-import '../../features/auth/auth_service.dart';
-import '../../features/auth/data/auth_repository.dart';
-import '../../features/auth/data/pocketbase_auth_repository.dart';
-import '../../features/camera/permission/camera_permission_manager.dart';
-import '../../features/camera/permission/permission_handler_camera_permission_manager.dart';
-import '../data/pocketbase_repository.dart';
-import '../navigation/app_router.dart';
-import '../data/repository.dart';
-import '../models/bundle.dart';
-import '../models/company.dart';
-import '../models/currency.dart';
-import '../models/item.dart';
+import 'package:inventory_app/features/auth/auth_service.dart';
+import 'package:inventory_app/features/auth/data/auth_repository.dart';
+import 'package:inventory_app/features/auth/data/pocketbase_auth_repository.dart';
+import 'package:inventory_app/features/camera/permission/camera_permission_manager.dart';
+import 'package:inventory_app/features/camera/permission/permission_handler_camera_permission_manager.dart';
+import 'package:inventory_app/shared/data/pocketbase_repository.dart';
+import 'package:inventory_app/shared/navigation/app_router.dart';
+import 'package:inventory_app/shared/data/repository.dart';
+import 'package:inventory_app/shared/models/bundle.dart';
+import 'package:inventory_app/shared/models/company.dart';
+import 'package:inventory_app/shared/models/currency.dart';
+import 'package:inventory_app/shared/models/item.dart';
 
 final getIt = GetIt.instance;
 

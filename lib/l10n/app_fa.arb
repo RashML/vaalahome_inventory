@@ -41,13 +41,148 @@
       }
     }
   },
-  "itemQrShareTitle": "اشتراک‌گذاری QR برای {itemId}",
-  "@itemQrShareTitle": {
-    "description": "Title of the item QR-share page.",
-    "placeholders": {
-      "itemId": {
-        "type": "String"
-      }
-    }
+  "itemQrShareCta": "اشتراک‌گذاری",
+  "@itemQrShareCta": {
+    "description": "Label of the share button on the item QR page."
+  },
+  "itemQrPrintCta": "چاپ",
+  "@itemQrPrintCta": {
+    "description": "Label of the print button on the item QR page."
+  },
+  "itemQrShareError": "اشتراک‌گذاری QR ناموفق بود.",
+  "@itemQrShareError": {
+    "description": "Shown when sharing the item QR fails."
+  },
+  "itemQrPrintError": "چاپ QR ناموفق بود.",
+  "@itemQrPrintError": {
+    "description": "Shown when printing the item QR fails."
+  },
+  "itemFormSectionBasics": "اطلاعات پایه",
+  "@itemFormSectionBasics": {
+    "description": "Title of the basic-details section of the item form."
+  },
+  "itemFormNameLabel": "نام",
+  "@itemFormNameLabel": {
+    "description": "Label of the item name field."
+  },
+  "itemFormCompanyLabel": "شرکت",
+  "@itemFormCompanyLabel": {
+    "description": "Label of the company field."
+  },
+  "itemFormCompanyHint": "انتخاب شرکت",
+  "@itemFormCompanyHint": {
+    "description": "Placeholder of the company dropdown before a selection is made."
+  },
+  "itemFormCompanySearchHint": "جستجوی شرکت",
+  "@itemFormCompanySearchHint": {
+    "description": "Placeholder of the company dropdown's search field."
+  },
+  "itemFormBundleLabel": "بسته",
+  "@itemFormBundleLabel": {
+    "description": "Label of the bundle field."
+  },
+  "itemFormBundleHint": "انتخاب بسته",
+  "@itemFormBundleHint": {
+    "description": "Placeholder of the bundle dropdown before a selection is made."
+  },
+  "itemFormBundleHintNoCompany": "ابتدا شرکت را انتخاب کنید",
+  "@itemFormBundleHintNoCompany": {
+    "description": "Placeholder of the bundle dropdown while no company is selected yet."
+  },
+  "itemFormBundleSearchHint": "جستجوی بسته",
+  "@itemFormBundleSearchHint": {
+    "description": "Placeholder of the bundle dropdown's search field."
+  },
+  "itemFormColorLabel": "کد رنگ",
+  "@itemFormColorLabel": {
+    "description": "Label of the color code field."
+  },
+  "itemFormColorHint": "#FF8800",
+  "@itemFormColorHint": {
+    "description": "Placeholder showing the expected hex color format."
+  },
+  "itemFormSectionSize": "ابعاد",
+  "@itemFormSectionSize": {
+    "description": "Title of the size/dimension section of the item form."
+  },
+  "itemFormSizeTypeSize": "عرض × ارتفاع",
+  "@itemFormSizeTypeSize": {
+    "description": "Segmented option for entering size as width and height."
+  },
+  "itemFormSizeTypeArea": "مساحت",
+  "@itemFormSizeTypeArea": {
+    "description": "Segmented option for entering size as an area."
+  },
+  "itemFormWidthLabel": "عرض",
+  "@itemFormWidthLabel": {
+    "description": "Label of the width field."
+  },
+  "itemFormHeightLabel": "ارتفاع",
+  "@itemFormHeightLabel": {
+    "description": "Label of the height field."
+  },
+  "itemFormAreaLabel": "مساحت (متر مربع)",
+  "@itemFormAreaLabel": {
+    "description": "Label of the area field."
+  },
+  "itemFormSectionPricing": "قیمت‌گذاری",
+  "@itemFormSectionPricing": {
+    "description": "Title of the pricing section of the item form."
+  },
+  "itemFormBuyPriceSubtitle": "قیمت خرید",
+  "@itemFormBuyPriceSubtitle": {
+    "description": "Subtitle above the buy-price amount/currency fields."
+  },
+  "itemFormSellPriceSubtitle": "قیمت فروش",
+  "@itemFormSellPriceSubtitle": {
+    "description": "Subtitle above the sell-price amount/currency fields."
+  },
+  "itemFormAmountLabel": "مبلغ",
+  "@itemFormAmountLabel": {
+    "description": "Label of a price amount field."
+  },
+  "itemFormCurrencyLabel": "ارز",
+  "@itemFormCurrencyLabel": {
+    "description": "Label of a currency field."
+  },
+  "itemFormCurrencyHint": "انتخاب ارز",
+  "@itemFormCurrencyHint": {
+    "description": "Placeholder of a currency dropdown before a selection is made."
+  },
+  "itemFormCurrencySearchHint": "جستجوی ارز",
+  "@itemFormCurrencySearchHint": {
+    "description": "Placeholder of a currency dropdown's search field."
+  },
+  "itemFormSubmitCta": "ثبت کالا",
+  "@itemFormSubmitCta": {
+    "description": "Label of the item form's submit button."
+  },
+  "itemFormRequiredField": "این فیلد الزامی است.",
+  "@itemFormRequiredField": {
+    "description": "Validation message for an empty required field."
+  },
+  "itemFormInvalidNumber": "عدد معتبر وارد کنید.",
+  "@itemFormInvalidNumber": {
+    "description": "Validation message for a numeric field with an invalid value."
+  },
+  "itemFormInvalidColor": "رنگ هگز معتبر وارد کنید، مثلاً #FF8800.",
+  "@itemFormInvalidColor": {
+    "description": "Validation message for an invalid hex color code."
+  },
+  "itemFormLoadError": "بارگذاری اطلاعات فرم ناموفق بود.",
+  "@itemFormLoadError": {
+    "description": "Shown when the item form fails to load its dropdown data."
+  },
+  "itemFormCreateError": "ثبت کالا ناموفق بود.",
+  "@itemFormCreateError": {
+    "description": "Shown when creating the item fails."
+  },
+  "itemFormNoResultFound": "نتیجه‌ای یافت نشد.",
+  "@itemFormNoResultFound": {
+    "description": "Shown in a dropdown's search list when no items match."
+  },
+  "itemFormRetryCta": "تلاش مجدد",
+  "@itemFormRetryCta": {
+    "description": "Label of the retry button shown after a load error."
   }
 }

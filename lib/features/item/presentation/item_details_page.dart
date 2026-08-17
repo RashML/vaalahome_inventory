@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../l10n/app_localizations.dart';
+import 'package:inventory_app/l10n/app_localizations.dart';
 
 /// Reached from [ScanPage] on a detected QR/barcode, or from any item list.
 class ItemDetailsPage extends StatelessWidget {

@@ -1,13 +1,13 @@
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../features/auth/auth_service.dart';
-import '../../features/auth/presentation/login_page.dart';
-import '../../features/camera/presentation/scan_page.dart';
-import '../../features/home/presentation/home_page.dart';
-import '../../features/item/presentation/item_create_page.dart';
-import '../../features/item/presentation/item_details_page.dart';
-import '../../features/item/presentation/item_qr_share_page.dart';
+import 'package:inventory_app/features/auth/auth_service.dart';
+import 'package:inventory_app/features/auth/presentation/login_page.dart';
+import 'package:inventory_app/features/camera/presentation/scan_page.dart';
+import 'package:inventory_app/features/home/presentation/home_page.dart';
+import 'package:inventory_app/features/item/presentation/item_create_page.dart';
+import 'package:inventory_app/features/item/presentation/item_details_page.dart';
+import 'package:inventory_app/features/item/presentation/item_qr_share_page.dart';
 import 'splash_page.dart';
 
 /// Top-level app navigation, gated by [AuthService.status]:

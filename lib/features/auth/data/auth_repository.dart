@@ -1,4 +1,4 @@
-import '../models/user.dart';
+import 'package:inventory_app/features/auth/models/user.dart';
 
 /// Authentication contract for the app, independent of the backing service.
 ///

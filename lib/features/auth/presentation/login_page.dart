@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../l10n/app_localizations.dart';
-import '../../../shared/di/locator.dart';
-import '../../../shared/utils/validators.dart';
-import '../../../shared/widgets/app_toast.dart';
-import '../../../shared/widgets/cta_button.dart';
-import '../data/auth_repository.dart';
+import 'package:inventory_app/l10n/app_localizations.dart';
+import 'package:inventory_app/shared/di/locator.dart';
+import 'package:inventory_app/shared/utils/validators.dart';
+import 'package:inventory_app/shared/widgets/app_toast.dart';
+import 'package:inventory_app/shared/widgets/cta_button.dart';
+import 'package:inventory_app/features/auth/data/auth_repository.dart';
 
 class LoginPage extends StatefulWidget {
   static const path = '/login';

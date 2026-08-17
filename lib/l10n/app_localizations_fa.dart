@@ -38,7 +38,110 @@ class AppLocalizationsFa extends AppLocalizations {
   }
 
   @override
-  String itemQrShareTitle(String itemId) {
-    return 'اشتراک‌گذاری QR برای $itemId';
-  }
+  String get itemQrShareCta => 'اشتراک‌گذاری';
+
+  @override
+  String get itemQrPrintCta => 'چاپ';
+
+  @override
+  String get itemQrShareError => 'اشتراک‌گذاری QR ناموفق بود.';
+
+  @override
+  String get itemQrPrintError => 'چاپ QR ناموفق بود.';
+
+  @override
+  String get itemFormSectionBasics => 'اطلاعات پایه';
+
+  @override
+  String get itemFormNameLabel => 'نام';
+
+  @override
+  String get itemFormCompanyLabel => 'شرکت';
+
+  @override
+  String get itemFormCompanyHint => 'انتخاب شرکت';
+
+  @override
+  String get itemFormCompanySearchHint => 'جستجوی شرکت';
+
+  @override
+  String get itemFormBundleLabel => 'بسته';
+
+  @override
+  String get itemFormBundleHint => 'انتخاب بسته';
+
+  @override
+  String get itemFormBundleHintNoCompany => 'ابتدا شرکت را انتخاب کنید';
+
+  @override
+  String get itemFormBundleSearchHint => 'جستجوی بسته';
+
+  @override
+  String get itemFormColorLabel => 'کد رنگ';
+
+  @override
+  String get itemFormColorHint => '#FF8800';
+
+  @override
+  String get itemFormSectionSize => 'ابعاد';
+
+  @override
+  String get itemFormSizeTypeSize => 'عرض × ارتفاع';
+
+  @override
+  String get itemFormSizeTypeArea => 'مساحت';
+
+  @override
+  String get itemFormWidthLabel => 'عرض';
+
+  @override
+  String get itemFormHeightLabel => 'ارتفاع';
+
+  @override
+  String get itemFormAreaLabel => 'مساحت (متر مربع)';
+
+  @override
+  String get itemFormSectionPricing => 'قیمت‌گذاری';
+
+  @override
+  String get itemFormBuyPriceSubtitle => 'قیمت خرید';
+
+  @override
+  String get itemFormSellPriceSubtitle => 'قیمت فروش';
+
+  @override
+  String get itemFormAmountLabel => 'مبلغ';
+
+  @override
+  String get itemFormCurrencyLabel => 'ارز';
+
+  @override
+  String get itemFormCurrencyHint => 'انتخاب ارز';
+
+  @override
+  String get itemFormCurrencySearchHint => 'جستجوی ارز';
+
+  @override
+  String get itemFormSubmitCta => 'ثبت کالا';
+
+  @override
+  String get itemFormRequiredField => 'این فیلد الزامی است.';
+
+  @override
+  String get itemFormInvalidNumber => 'عدد معتبر وارد کنید.';
+
+  @override
+  String get itemFormInvalidColor => 'رنگ هگز معتبر وارد کنید، مثلاً #FF8800.';
+
+  @override
+  String get itemFormLoadError => 'بارگذاری اطلاعات فرم ناموفق بود.';
+
+  @override
+  String get itemFormCreateError => 'ثبت کالا ناموفق بود.';
+
+  @override
+  String get itemFormNoResultFound => 'نتیجه‌ای یافت نشد.';
+
+  @override
+  String get itemFormRetryCta => 'تلاش مجدد';
 }

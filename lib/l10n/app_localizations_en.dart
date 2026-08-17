@@ -38,7 +38,110 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String itemQrShareTitle(String itemId) {
-    return 'Share QR for $itemId';
-  }
+  String get itemQrShareCta => 'Share';
+
+  @override
+  String get itemQrPrintCta => 'Print';
+
+  @override
+  String get itemQrShareError => 'Couldn\'t share the QR code.';
+
+  @override
+  String get itemQrPrintError => 'Couldn\'t print the QR code.';
+
+  @override
+  String get itemFormSectionBasics => 'Basic details';
+
+  @override
+  String get itemFormNameLabel => 'Name';
+
+  @override
+  String get itemFormCompanyLabel => 'Company';
+
+  @override
+  String get itemFormCompanyHint => 'Select company';
+
+  @override
+  String get itemFormCompanySearchHint => 'Search companies';
+
+  @override
+  String get itemFormBundleLabel => 'Bundle';
+
+  @override
+  String get itemFormBundleHint => 'Select bundle';
+
+  @override
+  String get itemFormBundleHintNoCompany => 'Select a company first';
+
+  @override
+  String get itemFormBundleSearchHint => 'Search bundles';
+
+  @override
+  String get itemFormColorLabel => 'Color code';
+
+  @override
+  String get itemFormColorHint => '#FF8800';
+
+  @override
+  String get itemFormSectionSize => 'Size';
+
+  @override
+  String get itemFormSizeTypeSize => 'Width × height';
+
+  @override
+  String get itemFormSizeTypeArea => 'Area';
+
+  @override
+  String get itemFormWidthLabel => 'Width';
+
+  @override
+  String get itemFormHeightLabel => 'Height';
+
+  @override
+  String get itemFormAreaLabel => 'Area (m²)';
+
+  @override
+  String get itemFormSectionPricing => 'Pricing';
+
+  @override
+  String get itemFormBuyPriceSubtitle => 'Buy price';
+
+  @override
+  String get itemFormSellPriceSubtitle => 'Sell price';
+
+  @override
+  String get itemFormAmountLabel => 'Amount';
+
+  @override
+  String get itemFormCurrencyLabel => 'Currency';
+
+  @override
+  String get itemFormCurrencyHint => 'Select currency';
+
+  @override
+  String get itemFormCurrencySearchHint => 'Search currencies';
+
+  @override
+  String get itemFormSubmitCta => 'Create item';
+
+  @override
+  String get itemFormRequiredField => 'This field is required.';
+
+  @override
+  String get itemFormInvalidNumber => 'Enter a valid number.';
+
+  @override
+  String get itemFormInvalidColor => 'Enter a valid hex color, e.g. #FF8800.';
+
+  @override
+  String get itemFormLoadError => 'Couldn\'t load form data.';
+
+  @override
+  String get itemFormCreateError => 'Couldn\'t create item.';
+
+  @override
+  String get itemFormNoResultFound => 'No results found.';
+
+  @override
+  String get itemFormRetryCta => 'Retry';
 }
