@@ -144,4 +144,31 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get itemFormRetryCta => 'تلاش مجدد';
+
+  @override
+  String get itemDetailsSectionPrice => 'قیمت';
+
+  @override
+  String get itemDetailsSellPriceLabel => 'قیمت فروش';
+
+  @override
+  String get itemDetailsFinalPriceLabel => 'قیمت نهایی';
+
+  @override
+  String get itemDetailsRialSuffix => 'ریال';
+
+  @override
+  String get itemDetailsBuyPriceLabel => 'قیمت خرید';
+
+  @override
+  String get itemDetailsHoldHint => 'ادمین: برای نمایش قیمت خرید ۵ ثانیه لمس نگه دارید';
+
+  @override
+  String get itemDetailsSectionDetails => 'جزئیات';
+
+  @override
+  String get itemDetailsUnitCm => 'سانتی‌متر';
+
+  @override
+  String get itemDetailsLoadError => 'بارگذاری جزئیات کالا ناموفق بود.';
 }

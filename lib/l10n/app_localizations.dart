@@ -367,6 +367,60 @@ abstract class AppLocalizations {
   /// In fa, this message translates to:
   /// **'تلاش مجدد'**
   String get itemFormRetryCta;
+
+  /// Title of the price section on the item details page.
+  ///
+  /// In fa, this message translates to:
+  /// **'قیمت'**
+  String get itemDetailsSectionPrice;
+
+  /// Label for the item's sell price, in its original currency.
+  ///
+  /// In fa, this message translates to:
+  /// **'قیمت فروش'**
+  String get itemDetailsSellPriceLabel;
+
+  /// Label for the sell price converted to Rial.
+  ///
+  /// In fa, this message translates to:
+  /// **'قیمت نهایی'**
+  String get itemDetailsFinalPriceLabel;
+
+  /// Unit suffix shown after a Rial amount.
+  ///
+  /// In fa, this message translates to:
+  /// **'ریال'**
+  String get itemDetailsRialSuffix;
+
+  /// Label for the item's buy price, shown in the admin-only reveal drawer.
+  ///
+  /// In fa, this message translates to:
+  /// **'قیمت خرید'**
+  String get itemDetailsBuyPriceLabel;
+
+  /// Hint shown to admins under the price card, explaining the hold-to-reveal gesture.
+  ///
+  /// In fa, this message translates to:
+  /// **'ادمین: برای نمایش قیمت خرید ۵ ثانیه لمس نگه دارید'**
+  String get itemDetailsHoldHint;
+
+  /// Title of the key-value details section on the item details page.
+  ///
+  /// In fa, this message translates to:
+  /// **'جزئیات'**
+  String get itemDetailsSectionDetails;
+
+  /// Unit suffix shown after a width/height value.
+  ///
+  /// In fa, this message translates to:
+  /// **'سانتی‌متر'**
+  String get itemDetailsUnitCm;
+
+  /// Shown when the item details page fails to load its data.
+  ///
+  /// In fa, this message translates to:
+  /// **'بارگذاری جزئیات کالا ناموفق بود.'**
+  String get itemDetailsLoadError;
 }
 
 class _AppLocalizationsDelegate

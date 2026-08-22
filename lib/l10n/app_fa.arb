@@ -184,5 +184,41 @@
   "itemFormRetryCta": "تلاش مجدد",
   "@itemFormRetryCta": {
     "description": "Label of the retry button shown after a load error."
+  },
+  "itemDetailsSectionPrice": "قیمت",
+  "@itemDetailsSectionPrice": {
+    "description": "Title of the price section on the item details page."
+  },
+  "itemDetailsSellPriceLabel": "قیمت فروش",
+  "@itemDetailsSellPriceLabel": {
+    "description": "Label for the item's sell price, in its original currency."
+  },
+  "itemDetailsFinalPriceLabel": "قیمت نهایی",
+  "@itemDetailsFinalPriceLabel": {
+    "description": "Label for the sell price converted to Rial."
+  },
+  "itemDetailsRialSuffix": "ریال",
+  "@itemDetailsRialSuffix": {
+    "description": "Unit suffix shown after a Rial amount."
+  },
+  "itemDetailsBuyPriceLabel": "قیمت خرید",
+  "@itemDetailsBuyPriceLabel": {
+    "description": "Label for the item's buy price, shown in the admin-only reveal drawer."
+  },
+  "itemDetailsHoldHint": "ادمین: برای نمایش قیمت خرید ۵ ثانیه لمس نگه دارید",
+  "@itemDetailsHoldHint": {
+    "description": "Hint shown to admins under the price card, explaining the hold-to-reveal gesture."
+  },
+  "itemDetailsSectionDetails": "جزئیات",
+  "@itemDetailsSectionDetails": {
+    "description": "Title of the key-value details section on the item details page."
+  },
+  "itemDetailsUnitCm": "سانتی‌متر",
+  "@itemDetailsUnitCm": {
+    "description": "Unit suffix shown after a width/height value."
+  },
+  "itemDetailsLoadError": "بارگذاری جزئیات کالا ناموفق بود.",
+  "@itemDetailsLoadError": {
+    "description": "Shown when the item details page fails to load its data."
   }
 }

@@ -144,4 +144,31 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get itemFormRetryCta => 'Retry';
+
+  @override
+  String get itemDetailsSectionPrice => 'Price';
+
+  @override
+  String get itemDetailsSellPriceLabel => 'Sell price';
+
+  @override
+  String get itemDetailsFinalPriceLabel => 'Final price';
+
+  @override
+  String get itemDetailsRialSuffix => 'Rial';
+
+  @override
+  String get itemDetailsBuyPriceLabel => 'Buy price';
+
+  @override
+  String get itemDetailsHoldHint => 'Admin: hold for 5 seconds to reveal the buy price';
+
+  @override
+  String get itemDetailsSectionDetails => 'Details';
+
+  @override
+  String get itemDetailsUnitCm => 'cm';
+
+  @override
+  String get itemDetailsLoadError => 'Couldn\'t load item details.';
 }

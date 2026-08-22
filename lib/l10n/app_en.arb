@@ -44,5 +44,14 @@
   "itemFormLoadError": "Couldn't load form data.",
   "itemFormCreateError": "Couldn't create item.",
   "itemFormNoResultFound": "No results found.",
-  "itemFormRetryCta": "Retry"
+  "itemFormRetryCta": "Retry",
+  "itemDetailsSectionPrice": "Price",
+  "itemDetailsSellPriceLabel": "Sell price",
+  "itemDetailsFinalPriceLabel": "Final price",
+  "itemDetailsRialSuffix": "Rial",
+  "itemDetailsBuyPriceLabel": "Buy price",
+  "itemDetailsHoldHint": "Admin: hold for 5 seconds to reveal the buy price",
+  "itemDetailsSectionDetails": "Details",
+  "itemDetailsUnitCm": "cm",
+  "itemDetailsLoadError": "Couldn't load item details."
 }
