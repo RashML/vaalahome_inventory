@@ -7,7 +7,10 @@ import 'package:inventory_app/features/camera/presentation/scan_page.dart';
 import 'package:inventory_app/features/home/presentation/home_page.dart';
 import 'package:inventory_app/features/item/presentation/item_create_page.dart';
 import 'package:inventory_app/features/item/presentation/item_details_page.dart';
+import 'package:inventory_app/features/item/presentation/item_edit_page.dart';
 import 'package:inventory_app/features/item/presentation/item_qr_share_page.dart';
+import 'package:inventory_app/features/order/presentation/draft_page.dart';
+import 'package:inventory_app/features/order/presentation/widgets/draft_fab_scaffold.dart';
 import 'splash_page.dart';
 
 /// Top-level app navigation, gated by [AuthService.status]:
@@ -20,9 +23,13 @@ import 'splash_page.dart';
 /// (e.g. [LoginPage] needs no explicit "go to home" call on success — once
 /// [AuthService.status] flips, the redirect sends it there).
 ///
+/// Every authenticated route is wrapped in [DraftFabScaffold], which is what
+/// puts the order-draft floating button on the whole app.
+///
 /// Flow: [HomePage] -> [ScanPage] or [ItemCreatePage].
 /// [ScanPage] on a detected code -> [ItemDetailsPage].
 /// [ItemCreatePage] on success -> [ItemQrSharePage].
+/// [ItemDetailsPage] -> [ItemEditPage] (admins) or [DraftPage] (the button).
 class AppRouter {
   AppRouter(this._authService) {
     router = GoRouter(
@@ -38,29 +45,49 @@ class AppRouter {
           path: LoginPage.path,
           builder: (context, state) => const LoginPage(),
         ),
-        GoRoute(
-          path: HomePage.path,
-          builder: (context, state) => const HomePage(),
-        ),
-        GoRoute(
-          path: ScanPage.path,
-          builder: (context, state) => const ScanPage(),
-        ),
-        GoRoute(
-          path: ItemCreatePage.path,
-          builder: (context, state) => const ItemCreatePage(),
-        ),
-        GoRoute(
-          path: ItemDetailsPage.path,
-          builder: (context, state) => ItemDetailsPage(
-            itemId: state.pathParameters['id']!,
+        ShellRoute(
+          builder: (context, state, child) => DraftFabScaffold(
+            location: state.matchedLocation,
+            child: child,
           ),
-        ),
-        GoRoute(
-          path: ItemQrSharePage.path,
-          builder: (context, state) => ItemQrSharePage(
-            itemId: state.pathParameters['id']!,
-          ),
+          routes: [
+            GoRoute(
+              path: HomePage.path,
+              builder: (context, state) => const HomePage(),
+            ),
+            GoRoute(
+              path: ScanPage.path,
+              builder: (context, state) => const ScanPage(),
+            ),
+            GoRoute(
+              path: DraftPage.path,
+              builder: (context, state) => const DraftPage(),
+            ),
+            // Declared before the '/items/:id' route so the literal segment
+            // wins over the path parameter.
+            GoRoute(
+              path: ItemCreatePage.path,
+              builder: (context, state) => const ItemCreatePage(),
+            ),
+            GoRoute(
+              path: ItemEditPage.path,
+              builder: (context, state) => ItemEditPage(
+                itemId: state.pathParameters['id']!,
+              ),
+            ),
+            GoRoute(
+              path: ItemDetailsPage.path,
+              builder: (context, state) => ItemDetailsPage(
+                itemId: state.pathParameters['id']!,
+              ),
+            ),
+            GoRoute(
+              path: ItemQrSharePage.path,
+              builder: (context, state) => ItemQrSharePage(
+                itemId: state.pathParameters['id']!,
+              ),
+            ),
+          ],
         ),
       ],
     );

@@ -421,6 +421,192 @@ abstract class AppLocalizations {
   /// In fa, this message translates to:
   /// **'بارگذاری جزئیات کالا ناموفق بود.'**
   String get itemDetailsLoadError;
+
+  /// Title of the item-edit form page.
+  ///
+  /// In fa, this message translates to:
+  /// **'ویرایش کالا'**
+  String get itemEditTitle;
+
+  /// Label of the width option in the item form's dimension-kind selector.
+  ///
+  /// In fa, this message translates to:
+  /// **'عرض'**
+  String get itemFormSizeTypeWidth;
+
+  /// Label of the height option in the item form's dimension-kind selector.
+  ///
+  /// In fa, this message translates to:
+  /// **'ارتفاع'**
+  String get itemFormSizeTypeHeight;
+
+  /// Label of the fixed-height field, shown for items sold by width.
+  ///
+  /// In fa, this message translates to:
+  /// **'ارتفاع ثابت (سانتی‌متر)'**
+  String get itemFormFixedHeightLabel;
+
+  /// Label of the fixed-width field, shown for items sold by height.
+  ///
+  /// In fa, this message translates to:
+  /// **'عرض ثابت (سانتی‌متر)'**
+  String get itemFormFixedWidthLabel;
+
+  /// Explains why the size section has no fields for area items.
+  ///
+  /// In fa, this message translates to:
+  /// **'کالاهای مساحتی هنگام سفارش بر حسب متر مربع وارد می‌شوند؛ اینجا مقداری لازم نیست.'**
+  String get itemFormAreaHint;
+
+  /// Label of the item-edit form's submit button.
+  ///
+  /// In fa, this message translates to:
+  /// **'ذخیره تغییرات'**
+  String get itemFormSaveCta;
+
+  /// Shown when updating an item fails.
+  ///
+  /// In fa, this message translates to:
+  /// **'ویرایش کالا ناموفق بود.'**
+  String get itemFormUpdateError;
+
+  /// Shown when an item is updated successfully.
+  ///
+  /// In fa, this message translates to:
+  /// **'کالا ویرایش شد.'**
+  String get itemFormUpdateSuccess;
+
+  /// Label of the admin-only edit action on the item details page.
+  ///
+  /// In fa, this message translates to:
+  /// **'ویرایش'**
+  String get itemDetailsEditCta;
+
+  /// Label of the row naming which axis the item is sold by.
+  ///
+  /// In fa, this message translates to:
+  /// **'فروش بر اساس'**
+  String get itemDetailsDimensionLabel;
+
+  /// Unit suffix shown after an area value.
+  ///
+  /// In fa, this message translates to:
+  /// **'متر مربع'**
+  String get itemDetailsUnitSquareMeter;
+
+  /// Title of the add-to-draft section on the item details page.
+  ///
+  /// In fa, this message translates to:
+  /// **'افزودن به پیش‌نویس سفارش'**
+  String get itemDetailsAddToDraftTitle;
+
+  /// Label of the add-to-draft button on the item details page.
+  ///
+  /// In fa, this message translates to:
+  /// **'افزودن به پیش‌نویس'**
+  String get itemDetailsAddToDraftCta;
+
+  /// Shown after an item is added to the order draft.
+  ///
+  /// In fa, this message translates to:
+  /// **'به پیش‌نویس اضافه شد.'**
+  String get itemDetailsAddedToDraft;
+
+  /// Label of the ordered-value field for items sold by width.
+  ///
+  /// In fa, this message translates to:
+  /// **'عرض سفارش'**
+  String get draftValueLabelWidth;
+
+  /// Label of the ordered-value field for items sold by height.
+  ///
+  /// In fa, this message translates to:
+  /// **'ارتفاع سفارش'**
+  String get draftValueLabelHeight;
+
+  /// Label of the ordered-value field for items sold by area.
+  ///
+  /// In fa, this message translates to:
+  /// **'مساحت سفارش (متر مربع)'**
+  String get draftValueLabelArea;
+
+  /// Title of the order draft page.
+  ///
+  /// In fa, this message translates to:
+  /// **'پیش‌نویس سفارش'**
+  String get draftTitle;
+
+  /// Tooltip of the floating order-draft button.
+  ///
+  /// In fa, this message translates to:
+  /// **'پیش‌نویس سفارش'**
+  String get draftFabTooltip;
+
+  /// Shown when the order draft has no lines.
+  ///
+  /// In fa, this message translates to:
+  /// **'پیش‌نویس سفارش خالی است.'**
+  String get draftEmpty;
+
+  /// Label of a draft line's unit price.
+  ///
+  /// In fa, this message translates to:
+  /// **'قیمت واحد'**
+  String get draftUnitPriceLabel;
+
+  /// Label of a draft line's total price.
+  ///
+  /// In fa, this message translates to:
+  /// **'جمع ردیف'**
+  String get draftLineTotalLabel;
+
+  /// Label of the order draft's grand total.
+  ///
+  /// In fa, this message translates to:
+  /// **'جمع کل'**
+  String get draftTotalLabel;
+
+  /// Title of the confirmation alert shown before removing a draft line.
+  ///
+  /// In fa, this message translates to:
+  /// **'حذف ردیف؟'**
+  String get draftRemoveTitle;
+
+  /// Body of the confirmation alert shown before removing a draft line.
+  ///
+  /// In fa, this message translates to:
+  /// **'این ردیف از پیش‌نویس سفارش حذف می‌شود.'**
+  String get draftRemoveMessage;
+
+  /// Label of the confirm action in the remove-line alert.
+  ///
+  /// In fa, this message translates to:
+  /// **'حذف'**
+  String get draftRemoveConfirmCta;
+
+  /// Label of the clear-draft action on the order draft page.
+  ///
+  /// In fa, this message translates to:
+  /// **'خالی کردن پیش‌نویس'**
+  String get draftClearCta;
+
+  /// Title of the confirmation alert shown before clearing the draft.
+  ///
+  /// In fa, this message translates to:
+  /// **'خالی کردن پیش‌نویس؟'**
+  String get draftClearTitle;
+
+  /// Body of the confirmation alert shown before clearing the draft.
+  ///
+  /// In fa, this message translates to:
+  /// **'همه ردیف‌های پیش‌نویس حذف می‌شوند.'**
+  String get draftClearMessage;
+
+  /// Label of the dismiss action in the draft confirmation alerts.
+  ///
+  /// In fa, this message translates to:
+  /// **'انصراف'**
+  String get draftCancelCta;
 }
 
 class _AppLocalizationsDelegate

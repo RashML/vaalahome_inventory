@@ -220,5 +220,129 @@
   "itemDetailsLoadError": "بارگذاری جزئیات کالا ناموفق بود.",
   "@itemDetailsLoadError": {
     "description": "Shown when the item details page fails to load its data."
+  },
+  "itemEditTitle": "ویرایش کالا",
+  "@itemEditTitle": {
+    "description": "Title of the item-edit form page."
+  },
+  "itemFormSizeTypeWidth": "عرض",
+  "@itemFormSizeTypeWidth": {
+    "description": "Label of the width option in the item form's dimension-kind selector."
+  },
+  "itemFormSizeTypeHeight": "ارتفاع",
+  "@itemFormSizeTypeHeight": {
+    "description": "Label of the height option in the item form's dimension-kind selector."
+  },
+  "itemFormFixedHeightLabel": "ارتفاع ثابت (سانتی‌متر)",
+  "@itemFormFixedHeightLabel": {
+    "description": "Label of the fixed-height field, shown for items sold by width."
+  },
+  "itemFormFixedWidthLabel": "عرض ثابت (سانتی‌متر)",
+  "@itemFormFixedWidthLabel": {
+    "description": "Label of the fixed-width field, shown for items sold by height."
+  },
+  "itemFormAreaHint": "کالاهای مساحتی هنگام سفارش بر حسب متر مربع وارد می‌شوند؛ اینجا مقداری لازم نیست.",
+  "@itemFormAreaHint": {
+    "description": "Explains why the size section has no fields for area items."
+  },
+  "itemFormSaveCta": "ذخیره تغییرات",
+  "@itemFormSaveCta": {
+    "description": "Label of the item-edit form's submit button."
+  },
+  "itemFormUpdateError": "ویرایش کالا ناموفق بود.",
+  "@itemFormUpdateError": {
+    "description": "Shown when updating an item fails."
+  },
+  "itemFormUpdateSuccess": "کالا ویرایش شد.",
+  "@itemFormUpdateSuccess": {
+    "description": "Shown when an item is updated successfully."
+  },
+  "itemDetailsEditCta": "ویرایش",
+  "@itemDetailsEditCta": {
+    "description": "Label of the admin-only edit action on the item details page."
+  },
+  "itemDetailsDimensionLabel": "فروش بر اساس",
+  "@itemDetailsDimensionLabel": {
+    "description": "Label of the row naming which axis the item is sold by."
+  },
+  "itemDetailsUnitSquareMeter": "متر مربع",
+  "@itemDetailsUnitSquareMeter": {
+    "description": "Unit suffix shown after an area value."
+  },
+  "itemDetailsAddToDraftTitle": "افزودن به پیش‌نویس سفارش",
+  "@itemDetailsAddToDraftTitle": {
+    "description": "Title of the add-to-draft section on the item details page."
+  },
+  "itemDetailsAddToDraftCta": "افزودن به پیش‌نویس",
+  "@itemDetailsAddToDraftCta": {
+    "description": "Label of the add-to-draft button on the item details page."
+  },
+  "itemDetailsAddedToDraft": "به پیش‌نویس اضافه شد.",
+  "@itemDetailsAddedToDraft": {
+    "description": "Shown after an item is added to the order draft."
+  },
+  "draftValueLabelWidth": "عرض سفارش",
+  "@draftValueLabelWidth": {
+    "description": "Label of the ordered-value field for items sold by width."
+  },
+  "draftValueLabelHeight": "ارتفاع سفارش",
+  "@draftValueLabelHeight": {
+    "description": "Label of the ordered-value field for items sold by height."
+  },
+  "draftValueLabelArea": "مساحت سفارش (متر مربع)",
+  "@draftValueLabelArea": {
+    "description": "Label of the ordered-value field for items sold by area."
+  },
+  "draftTitle": "پیش‌نویس سفارش",
+  "@draftTitle": {
+    "description": "Title of the order draft page."
+  },
+  "draftFabTooltip": "پیش‌نویس سفارش",
+  "@draftFabTooltip": {
+    "description": "Tooltip of the floating order-draft button."
+  },
+  "draftEmpty": "پیش‌نویس سفارش خالی است.",
+  "@draftEmpty": {
+    "description": "Shown when the order draft has no lines."
+  },
+  "draftUnitPriceLabel": "قیمت واحد",
+  "@draftUnitPriceLabel": {
+    "description": "Label of a draft line's unit price."
+  },
+  "draftLineTotalLabel": "جمع ردیف",
+  "@draftLineTotalLabel": {
+    "description": "Label of a draft line's total price."
+  },
+  "draftTotalLabel": "جمع کل",
+  "@draftTotalLabel": {
+    "description": "Label of the order draft's grand total."
+  },
+  "draftRemoveTitle": "حذف ردیف؟",
+  "@draftRemoveTitle": {
+    "description": "Title of the confirmation alert shown before removing a draft line."
+  },
+  "draftRemoveMessage": "این ردیف از پیش‌نویس سفارش حذف می‌شود.",
+  "@draftRemoveMessage": {
+    "description": "Body of the confirmation alert shown before removing a draft line."
+  },
+  "draftRemoveConfirmCta": "حذف",
+  "@draftRemoveConfirmCta": {
+    "description": "Label of the confirm action in the remove-line alert."
+  },
+  "draftClearCta": "خالی کردن پیش‌نویس",
+  "@draftClearCta": {
+    "description": "Label of the clear-draft action on the order draft page."
+  },
+  "draftClearTitle": "خالی کردن پیش‌نویس؟",
+  "@draftClearTitle": {
+    "description": "Title of the confirmation alert shown before clearing the draft."
+  },
+  "draftClearMessage": "همه ردیف‌های پیش‌نویس حذف می‌شوند.",
+  "@draftClearMessage": {
+    "description": "Body of the confirmation alert shown before clearing the draft."
+  },
+  "draftCancelCta": "انصراف",
+  "@draftCancelCta": {
+    "description": "Label of the dismiss action in the draft confirmation alerts."
   }
 }

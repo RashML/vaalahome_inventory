@@ -171,4 +171,97 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get itemDetailsLoadError => 'Couldn\'t load item details.';
+
+  @override
+  String get itemEditTitle => 'Edit item';
+
+  @override
+  String get itemFormSizeTypeWidth => 'Width';
+
+  @override
+  String get itemFormSizeTypeHeight => 'Height';
+
+  @override
+  String get itemFormFixedHeightLabel => 'Fixed height (cm)';
+
+  @override
+  String get itemFormFixedWidthLabel => 'Fixed width (cm)';
+
+  @override
+  String get itemFormAreaHint => 'Area items are entered in m² when ordered — nothing to set here.';
+
+  @override
+  String get itemFormSaveCta => 'Save changes';
+
+  @override
+  String get itemFormUpdateError => 'Couldn\'t update item.';
+
+  @override
+  String get itemFormUpdateSuccess => 'Item updated.';
+
+  @override
+  String get itemDetailsEditCta => 'Edit';
+
+  @override
+  String get itemDetailsDimensionLabel => 'Sold by';
+
+  @override
+  String get itemDetailsUnitSquareMeter => 'm²';
+
+  @override
+  String get itemDetailsAddToDraftTitle => 'Add to order draft';
+
+  @override
+  String get itemDetailsAddToDraftCta => 'Add to draft';
+
+  @override
+  String get itemDetailsAddedToDraft => 'Added to the draft.';
+
+  @override
+  String get draftValueLabelWidth => 'Width to order';
+
+  @override
+  String get draftValueLabelHeight => 'Height to order';
+
+  @override
+  String get draftValueLabelArea => 'Area to order (m²)';
+
+  @override
+  String get draftTitle => 'Order draft';
+
+  @override
+  String get draftFabTooltip => 'Order draft';
+
+  @override
+  String get draftEmpty => 'The order draft is empty.';
+
+  @override
+  String get draftUnitPriceLabel => 'Unit price';
+
+  @override
+  String get draftLineTotalLabel => 'Line total';
+
+  @override
+  String get draftTotalLabel => 'Total';
+
+  @override
+  String get draftRemoveTitle => 'Remove line?';
+
+  @override
+  String get draftRemoveMessage => 'This line will be removed from the order draft.';
+
+  @override
+  String get draftRemoveConfirmCta => 'Remove';
+
+  @override
+  String get draftClearCta => 'Clear draft';
+
+  @override
+  String get draftClearTitle => 'Clear draft?';
+
+  @override
+  String get draftClearMessage => 'Every line will be removed from the draft.';
+
+  @override
+  String get draftCancelCta => 'Cancel';
 }

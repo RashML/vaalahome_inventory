@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:inventory_app/features/auth/auth_service.dart';
 import 'package:inventory_app/features/auth/models/user.dart';
+import 'package:inventory_app/features/item/presentation/item_edit_page.dart';
 import 'package:inventory_app/features/item/presentation/widgets/item_detail_row.dart';
 import 'package:inventory_app/features/item/presentation/widgets/item_price_section.dart';
+import 'package:inventory_app/features/order/presentation/widgets/add_to_draft_card.dart';
 import 'package:inventory_app/l10n/app_localizations.dart';
 import 'package:inventory_app/shared/data/repository.dart';
 import 'package:inventory_app/shared/di/locator.dart';
@@ -16,8 +19,9 @@ import 'package:inventory_app/shared/models/item.dart';
 /// Reached from [ScanPage] on a detected QR/barcode, or from any item list.
 ///
 /// Shows the item's price (converted to Rial) with an admin-only hold-to-reveal
-/// drawer for the buy price, followed by the rest of the item's fields as
-/// key-value rows.
+/// drawer for the buy price, the rest of the item's fields as key-value rows,
+/// and — for every role — an add-to-draft section for ordering the item by its
+/// variable dimension axis. Admins also get an edit action in the app bar.
 class ItemDetailsPage extends StatefulWidget {
   static const path = '/items/:id';
 
@@ -78,16 +82,34 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
     }
   }
 
+  /// Opens the edit form and reloads when it reports a saved change, so the
+  /// details shown are the updated ones (the item's id is unchanged).
+  Future<void> _edit() async {
+    final saved = await context.push<bool>(ItemEditPage.location(widget.itemId));
+    if (saved == true && mounted) await _load();
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final isAdmin = getIt<AuthService>().role == UserRole.admin;
     return Scaffold(
-      appBar: AppBar(title: Text(_item?.name ?? '')),
-      body: SafeArea(child: _buildBody(context, l10n)),
+      appBar: AppBar(
+        title: Text(_item?.name ?? ''),
+        actions: [
+          if (isAdmin && _item != null)
+            IconButton(
+              onPressed: _edit,
+              icon: const Icon(Icons.edit_outlined),
+              tooltip: l10n.itemDetailsEditCta,
+            ),
+        ],
+      ),
+      body: SafeArea(child: _buildBody(context, l10n, isAdmin)),
     );
   }
 
-  Widget _buildBody(BuildContext context, AppLocalizations l10n) {
+  Widget _buildBody(BuildContext context, AppLocalizations l10n, bool isAdmin) {
     if (_loading) {
       return const Center(child: CircularProgressIndicator());
     }
@@ -109,7 +131,6 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
     }
 
     final item = _item!;
-    final isAdmin = getIt<AuthService>().role == UserRole.admin;
 
     return ListView(
       padding: const EdgeInsets.fromLTRB(20, 20, 20, 32),
@@ -121,6 +142,8 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
           buyCurrency: _buyCurrency!,
           isAdmin: isAdmin,
         ),
+        const SizedBox(height: 24),
+        AddToDraftCard(item: item, sellCurrency: _sellCurrency!),
         const SizedBox(height: 24),
         Text(l10n.itemDetailsSectionDetails, style: Theme.of(context).textTheme.titleLarge),
         const SizedBox(height: 8),
@@ -147,29 +170,34 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
     );
   }
 
+  /// The axis the item is sold by, plus its fixed counterpart when it has one.
   List<Widget> _dimensionRows(AppLocalizations l10n, Dimension size) {
-    return switch (size) {
-      SizeDimension(:final width, :final height) => [
-          if (width != null) ...[
-            const Divider(height: 1),
-            ItemDetailRow(
-              label: l10n.itemFormWidthLabel,
-              value: '${_trimNumber(width)} ${l10n.itemDetailsUnitCm}',
-            ),
-          ],
-          if (height != null) ...[
-            const Divider(height: 1),
-            ItemDetailRow(
-              label: l10n.itemFormHeightLabel,
-              value: '${_trimNumber(height)} ${l10n.itemDetailsUnitCm}',
-            ),
-          ],
-        ],
-      AreaDimension(:final squareMeters) => [
-          const Divider(height: 1),
-          ItemDetailRow(label: l10n.itemFormAreaLabel, value: _trimNumber(squareMeters)),
-        ],
+    final soldBy = switch (size.kind) {
+      DimensionKind.width => l10n.itemFormSizeTypeWidth,
+      DimensionKind.height => l10n.itemFormSizeTypeHeight,
+      DimensionKind.area => l10n.itemFormSizeTypeArea,
     };
+
+    final fixed = switch (size) {
+      WidthDimension(:final fixedHeight) when fixedHeight != null => (
+          l10n.itemFormHeightLabel,
+          '${_trimNumber(fixedHeight)} ${l10n.itemDetailsUnitCm}',
+        ),
+      HeightDimension(:final fixedWidth) when fixedWidth != null => (
+          l10n.itemFormWidthLabel,
+          '${_trimNumber(fixedWidth)} ${l10n.itemDetailsUnitCm}',
+        ),
+      _ => null,
+    };
+
+    return [
+      const Divider(height: 1),
+      ItemDetailRow(label: l10n.itemDetailsDimensionLabel, value: soldBy),
+      if (fixed != null) ...[
+        const Divider(height: 1),
+        ItemDetailRow(label: fixed.$1, value: fixed.$2),
+      ],
+    ];
   }
 
   String _trimNumber(double value) =>

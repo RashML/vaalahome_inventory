@@ -171,4 +171,97 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get itemDetailsLoadError => 'بارگذاری جزئیات کالا ناموفق بود.';
+
+  @override
+  String get itemEditTitle => 'ویرایش کالا';
+
+  @override
+  String get itemFormSizeTypeWidth => 'عرض';
+
+  @override
+  String get itemFormSizeTypeHeight => 'ارتفاع';
+
+  @override
+  String get itemFormFixedHeightLabel => 'ارتفاع ثابت (سانتی‌متر)';
+
+  @override
+  String get itemFormFixedWidthLabel => 'عرض ثابت (سانتی‌متر)';
+
+  @override
+  String get itemFormAreaHint => 'کالاهای مساحتی هنگام سفارش بر حسب متر مربع وارد می‌شوند؛ اینجا مقداری لازم نیست.';
+
+  @override
+  String get itemFormSaveCta => 'ذخیره تغییرات';
+
+  @override
+  String get itemFormUpdateError => 'ویرایش کالا ناموفق بود.';
+
+  @override
+  String get itemFormUpdateSuccess => 'کالا ویرایش شد.';
+
+  @override
+  String get itemDetailsEditCta => 'ویرایش';
+
+  @override
+  String get itemDetailsDimensionLabel => 'فروش بر اساس';
+
+  @override
+  String get itemDetailsUnitSquareMeter => 'متر مربع';
+
+  @override
+  String get itemDetailsAddToDraftTitle => 'افزودن به پیش‌نویس سفارش';
+
+  @override
+  String get itemDetailsAddToDraftCta => 'افزودن به پیش‌نویس';
+
+  @override
+  String get itemDetailsAddedToDraft => 'به پیش‌نویس اضافه شد.';
+
+  @override
+  String get draftValueLabelWidth => 'عرض سفارش';
+
+  @override
+  String get draftValueLabelHeight => 'ارتفاع سفارش';
+
+  @override
+  String get draftValueLabelArea => 'مساحت سفارش (متر مربع)';
+
+  @override
+  String get draftTitle => 'پیش‌نویس سفارش';
+
+  @override
+  String get draftFabTooltip => 'پیش‌نویس سفارش';
+
+  @override
+  String get draftEmpty => 'پیش‌نویس سفارش خالی است.';
+
+  @override
+  String get draftUnitPriceLabel => 'قیمت واحد';
+
+  @override
+  String get draftLineTotalLabel => 'جمع ردیف';
+
+  @override
+  String get draftTotalLabel => 'جمع کل';
+
+  @override
+  String get draftRemoveTitle => 'حذف ردیف؟';
+
+  @override
+  String get draftRemoveMessage => 'این ردیف از پیش‌نویس سفارش حذف می‌شود.';
+
+  @override
+  String get draftRemoveConfirmCta => 'حذف';
+
+  @override
+  String get draftClearCta => 'خالی کردن پیش‌نویس';
+
+  @override
+  String get draftClearTitle => 'خالی کردن پیش‌نویس؟';
+
+  @override
+  String get draftClearMessage => 'همه ردیف‌های پیش‌نویس حذف می‌شوند.';
+
+  @override
+  String get draftCancelCta => 'انصراف';
 }

@@ -6,6 +6,7 @@ import 'package:inventory_app/features/auth/data/auth_repository.dart';
 import 'package:inventory_app/features/auth/data/pocketbase_auth_repository.dart';
 import 'package:inventory_app/features/camera/permission/camera_permission_manager.dart';
 import 'package:inventory_app/features/camera/permission/permission_handler_camera_permission_manager.dart';
+import 'package:inventory_app/features/order/data/draft_order_service.dart';
 import 'package:inventory_app/shared/data/pocketbase_repository.dart';
 import 'package:inventory_app/shared/navigation/app_router.dart';
 import 'package:inventory_app/shared/data/repository.dart';
@@ -28,6 +29,9 @@ void setupLocator({String pocketBaseUrl = 'http://127.0.0.1:8090'}) {
   getIt.registerSingleton<AuthRepository>(PocketBaseAuthRepository(pb));
   getIt.registerSingleton<AuthService>(AuthService(getIt<AuthRepository>()));
   getIt.registerSingleton<AppRouter>(AppRouter(getIt<AuthService>()));
+
+  // In-memory only: the order draft is a scratch pad, dropped on restart.
+  getIt.registerSingleton<DraftOrderService>(DraftOrderService());
 
   getIt.registerSingleton<CameraPermissionManager>(
     PermissionHandlerCameraPermissionManager(),

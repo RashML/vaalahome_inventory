@@ -2,54 +2,96 @@
 ///
 /// Stored as an embedded JSON object (not its own PocketBase collection),
 /// discriminated by a `type` field.
+///
+/// A dimension declares which axis of the item is *variable* at order time —
+/// the value a buyer enters and the sell price is multiplied by — and carries
+/// the fixed counterpart axis, when the item has one. A roll of fabric, for
+/// example, has a fixed height and is sold by width: [WidthDimension] with
+/// `fixedHeight` set. Ordering "2" of it means 2 width units.
 sealed class Dimension {
   const Dimension();
 
   /// Maps a JSON object into a strongly-typed [Dimension].
+  ///
+  /// The legacy `size` type (which stored both axes without saying which one
+  /// was orderable) is read as a [WidthDimension] whose fixed counterpart is
+  /// the stored height.
   factory Dimension.fromJson(Map<String, dynamic> json) {
     return switch (json['type']) {
-      'size' => SizeDimension(
-          width: (json['width'] as num?)?.toDouble(),
-          height: (json['height'] as num?)?.toDouble(),
-        ),
-      'area' => AreaDimension((json['squareMeters'] as num).toDouble()),
+      'width' => WidthDimension(fixedHeight: (json['height'] as num?)?.toDouble()),
+      'height' => HeightDimension(fixedWidth: (json['width'] as num?)?.toDouble()),
+      'area' => const AreaDimension(),
+      'size' => WidthDimension(fixedHeight: (json['height'] as num?)?.toDouble()),
       _ => throw ArgumentError('Unknown dimension type: ${json['type']}'),
     };
   }
+
+  /// The kind of this dimension, for use where a `switch` on the type itself
+  /// would be overkill (dropdowns, segmented buttons, labels).
+  DimensionKind get kind;
 
   /// Converts this [Dimension] back into a JSON map.
   Map<String, dynamic> toJson();
 }
 
-class SizeDimension extends Dimension {
-  final double? width;
-  final double? height;
+/// The variable axis of a [Dimension] — what the buyer enters at order time.
+enum DimensionKind {
+  width('width'),
+  height('height'),
+  area('area');
 
-  const SizeDimension({
-    this.width,
-    this.height,
-  });
+  const DimensionKind(this.value);
+
+  /// The raw value stored in PocketBase's `type` discriminator.
+  final String value;
+}
+
+/// Item sold by width; [fixedHeight] (in cm) is the same for every order.
+class WidthDimension extends Dimension {
+  final double? fixedHeight;
+
+  const WidthDimension({this.fixedHeight});
+
+  @override
+  DimensionKind get kind => DimensionKind.width;
 
   @override
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
-      'type': 'size',
-      if (width != null) 'width': width,
-      if (height != null) 'height': height,
+      'type': DimensionKind.width.value,
+      if (fixedHeight != null) 'height': fixedHeight,
     };
   }
 }
 
-class AreaDimension extends Dimension {
-  final double squareMeters;
+/// Item sold by height; [fixedWidth] (in cm) is the same for every order.
+class HeightDimension extends Dimension {
+  final double? fixedWidth;
 
-  const AreaDimension(this.squareMeters);
+  const HeightDimension({this.fixedWidth});
+
+  @override
+  DimensionKind get kind => DimensionKind.height;
 
   @override
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
-      'type': 'area',
-      'squareMeters': squareMeters,
+      'type': DimensionKind.height.value,
+      if (fixedWidth != null) 'width': fixedWidth,
     };
+  }
+}
+
+/// Item sold by area (m²); there is no fixed counterpart axis — the single
+/// value the buyer enters is the whole quantity.
+class AreaDimension extends Dimension {
+  const AreaDimension();
+
+  @override
+  DimensionKind get kind => DimensionKind.area;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{'type': DimensionKind.area.value};
   }
 }
