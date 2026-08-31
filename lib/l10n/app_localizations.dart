@@ -134,6 +134,18 @@ abstract class AppLocalizations {
   /// **'خانه'**
   String get homeTitle;
 
+  /// Label of the home page's scan-item action.
+  ///
+  /// In fa, this message translates to:
+  /// **'اسکن کالا'**
+  String get homeScanCta;
+
+  /// Label of the home page's create-item action.
+  ///
+  /// In fa, this message translates to:
+  /// **'افزودن کالا'**
+  String get homeCreateCta;
+
   /// Title of the QR/barcode scan page.
   ///
   /// In fa, this message translates to:

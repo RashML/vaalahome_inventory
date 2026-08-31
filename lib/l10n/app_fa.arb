@@ -24,6 +24,14 @@
   "@homeTitle": {
     "description": "Title of the home page."
   },
+  "homeScanCta": "اسکن کالا",
+  "@homeScanCta": {
+    "description": "Label of the home page's scan-item action."
+  },
+  "homeCreateCta": "افزودن کالا",
+  "@homeCreateCta": {
+    "description": "Label of the home page's create-item action."
+  },
   "scanTitle": "اسکن",
   "@scanTitle": {
     "description": "Title of the QR/barcode scan page."

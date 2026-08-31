@@ -27,6 +27,12 @@ class AppLocalizationsFa extends AppLocalizations {
   String get homeTitle => 'خانه';
 
   @override
+  String get homeScanCta => 'اسکن کالا';
+
+  @override
+  String get homeCreateCta => 'افزودن کالا';
+
+  @override
   String get scanTitle => 'اسکن';
 
   @override
@@ -161,7 +167,8 @@ class AppLocalizationsFa extends AppLocalizations {
   String get itemDetailsBuyPriceLabel => 'قیمت خرید';
 
   @override
-  String get itemDetailsHoldHint => 'ادمین: برای نمایش قیمت خرید ۵ ثانیه لمس نگه دارید';
+  String get itemDetailsHoldHint =>
+      'ادمین: برای نمایش قیمت خرید ۵ ثانیه لمس نگه دارید';
 
   @override
   String get itemDetailsSectionDetails => 'جزئیات';
@@ -188,7 +195,8 @@ class AppLocalizationsFa extends AppLocalizations {
   String get itemFormFixedWidthLabel => 'عرض ثابت (سانتی‌متر)';
 
   @override
-  String get itemFormAreaHint => 'کالاهای مساحتی هنگام سفارش بر حسب متر مربع وارد می‌شوند؛ اینجا مقداری لازم نیست.';
+  String get itemFormAreaHint =>
+      'کالاهای مساحتی هنگام سفارش بر حسب متر مربع وارد می‌شوند؛ اینجا مقداری لازم نیست.';
 
   @override
   String get itemFormSaveCta => 'ذخیره تغییرات';

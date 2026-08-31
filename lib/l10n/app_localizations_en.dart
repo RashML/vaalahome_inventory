@@ -27,6 +27,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeTitle => 'Home';
 
   @override
+  String get homeScanCta => 'Scan item';
+
+  @override
+  String get homeCreateCta => 'Add item';
+
+  @override
   String get scanTitle => 'Scan';
 
   @override
@@ -161,7 +167,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get itemDetailsBuyPriceLabel => 'Buy price';
 
   @override
-  String get itemDetailsHoldHint => 'Admin: hold for 5 seconds to reveal the buy price';
+  String get itemDetailsHoldHint =>
+      'Admin: hold for 5 seconds to reveal the buy price';
 
   @override
   String get itemDetailsSectionDetails => 'Details';
@@ -188,7 +195,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get itemFormFixedWidthLabel => 'Fixed width (cm)';
 
   @override
-  String get itemFormAreaHint => 'Area items are entered in m² when ordered — nothing to set here.';
+  String get itemFormAreaHint =>
+      'Area items are entered in m² when ordered — nothing to set here.';
 
   @override
   String get itemFormSaveCta => 'Save changes';
@@ -248,7 +256,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get draftRemoveTitle => 'Remove line?';
 
   @override
-  String get draftRemoveMessage => 'This line will be removed from the order draft.';
+  String get draftRemoveMessage =>
+      'This line will be removed from the order draft.';
 
   @override
   String get draftRemoveConfirmCta => 'Remove';

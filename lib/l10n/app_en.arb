@@ -6,6 +6,8 @@
   "loginCta": "Login",
   "loginError": "Incorrect email or password.",
   "homeTitle": "Home",
+  "homeScanCta": "Scan item",
+  "homeCreateCta": "Add item",
   "scanTitle": "Scan",
   "itemCreateTitle": "Create item",
   "itemDetailsTitle": "Item {itemId}",
