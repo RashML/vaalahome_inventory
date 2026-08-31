@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:pocketbase/pocketbase.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:inventory_app/features/auth/auth_service.dart';
 import 'package:inventory_app/features/auth/data/auth_repository.dart';
@@ -22,8 +23,14 @@ final getIt = GetIt.instance;
 /// Pages/blocs resolve [AuthRepository] / `Repository<T>` from [getIt] and
 /// never see PocketBase directly, so swapping to a mock or another backend
 /// means changing only this function.
-void setupLocator({String pocketBaseUrl = 'http://127.0.0.1:8090'}) {
-  final pb = PocketBase(pocketBaseUrl);
+Future<void> setupLocator({String pocketBaseUrl = 'http://127.0.0.1:8090'}) async {
+  final prefs = await SharedPreferences.getInstance();
+  final authStore = AsyncAuthStore(
+    save: (data) async => prefs.setString('pb_auth', data),
+    initial: prefs.getString('pb_auth'),
+    clear: () async => prefs.remove('pb_auth'),
+  );
+  final pb = PocketBase(pocketBaseUrl, authStore: authStore);
   getIt.registerSingleton<PocketBase>(pb);
 
   getIt.registerSingleton<AuthRepository>(PocketBaseAuthRepository(pb));

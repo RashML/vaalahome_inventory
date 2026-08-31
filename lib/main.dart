@@ -8,7 +8,7 @@ import 'shared/theme/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  setupLocator();
+  await setupLocator();
   await getIt<AuthService>().initialize();
   runApp(const MyApp());
 }
