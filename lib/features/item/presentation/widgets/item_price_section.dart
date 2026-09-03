@@ -206,10 +206,9 @@ class _ItemPriceSectionState extends State<ItemPriceSection>
             GestureRecognizerFactoryWithHandlers<LongPressGestureRecognizer>(
           () => LongPressGestureRecognizer(duration: _kHoldToRevealDuration),
           (instance) {
-            instance
-              ..onLongPressStart = (_) => _reveal()
-              ..onLongPressEnd = (_) => _hide()
-              ..onLongPressCancel = _hide;
+            instance.onLongPressStart = (_) => _reveal();
+            instance.onLongPressEnd = (_) => _hide();
+            instance.onLongPressCancel = _hide;
           },
         ),
       },
