@@ -8,7 +8,12 @@ import 'shared/theme/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await setupLocator();
+  await setupLocator(
+    pocketBaseUrl: const String.fromEnvironment(
+      'POCKETBASE_URL',
+      defaultValue: 'http://127.0.0.1:8090',
+    ),
+  );
   await getIt<AuthService>().initialize();
   runApp(const MyApp());
 }
