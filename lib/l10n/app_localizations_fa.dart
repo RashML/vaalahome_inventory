@@ -36,6 +36,26 @@ class AppLocalizationsFa extends AppLocalizations {
   String get scanTitle => 'اسکن';
 
   @override
+  String get scanPermissionDenied => 'دسترسی به دوربین مسدود است';
+
+  @override
+  String get scanPermissionStepsApp =>
+      'در تنظیمات گوشی، دسترسی دوربین را برای این برنامه مجاز کنید، سپس برگردید و «تلاش مجدد» را بزنید.';
+
+  @override
+  String get scanPermissionStepsWeb =>
+      'دسترسی دوربین را برای این سایت در مرورگر مجاز کنید، سپس «تلاش مجدد» را بزنید.\n\nسافاری آیفون: تنظیمات ← Safari ← Camera ← Ask یا Allow (یا روی آیکون aA در نوار آدرس بزنید ← Website Settings ← Camera).\nکروم / اندروید: روی آیکون قفل کنار آدرس بزنید ← Permissions ← Camera ← Allow.';
+
+  @override
+  String get scanOpenSettingsCta => 'باز کردن تنظیمات';
+
+  @override
+  String get scanCameraError => 'راه‌اندازی دوربین ناموفق بود.';
+
+  @override
+  String get scanInvalidCode => 'این کد QR مربوط به کالا نیست.';
+
+  @override
   String get itemCreateTitle => 'افزودن کالا';
 
   @override
@@ -86,7 +106,17 @@ class AppLocalizationsFa extends AppLocalizations {
   String get itemFormColorLabel => 'کد رنگ';
 
   @override
-  String get itemFormColorHint => '#FF8800';
+  String get itemFormColorHint => 'مثلاً 1024';
+
+  @override
+  String get itemFormSectionImages => 'تصاویر';
+
+  @override
+  String get itemFormAddImagesCta => 'افزودن تصویر';
+
+  @override
+  String get itemFormImagesUploadError =>
+      'کالا ذخیره شد، اما بارگذاری تصاویر ناموفق بود.';
 
   @override
   String get itemFormSectionSize => 'ابعاد';
@@ -137,9 +167,6 @@ class AppLocalizationsFa extends AppLocalizations {
   String get itemFormInvalidNumber => 'عدد معتبر وارد کنید.';
 
   @override
-  String get itemFormInvalidColor => 'رنگ هگز معتبر وارد کنید، مثلاً #FF8800.';
-
-  @override
   String get itemFormLoadError => 'بارگذاری اطلاعات فرم ناموفق بود.';
 
   @override
@@ -174,6 +201,12 @@ class AppLocalizationsFa extends AppLocalizations {
   String get itemDetailsSectionDetails => 'جزئیات';
 
   @override
+  String get itemDetailsUnitMeter => 'متر';
+
+  @override
+  String get itemFormUnitLabel => 'واحد';
+
+  @override
   String get itemDetailsUnitCm => 'سانتی‌متر';
 
   @override
@@ -189,10 +222,10 @@ class AppLocalizationsFa extends AppLocalizations {
   String get itemFormSizeTypeHeight => 'ارتفاع';
 
   @override
-  String get itemFormFixedHeightLabel => 'ارتفاع ثابت (سانتی‌متر)';
+  String get itemFormFixedHeightLabel => 'ارتفاع ثابت';
 
   @override
-  String get itemFormFixedWidthLabel => 'عرض ثابت (سانتی‌متر)';
+  String get itemFormFixedWidthLabel => 'عرض ثابت';
 
   @override
   String get itemFormAreaHint =>
@@ -232,7 +265,7 @@ class AppLocalizationsFa extends AppLocalizations {
   String get draftValueLabelHeight => 'ارتفاع سفارش';
 
   @override
-  String get draftValueLabelArea => 'مساحت سفارش (متر مربع)';
+  String get draftValueLabelArea => 'مساحت سفارش';
 
   @override
   String get draftTitle => 'پیش‌نویس سفارش';

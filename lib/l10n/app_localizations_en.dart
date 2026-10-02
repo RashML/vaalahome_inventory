@@ -36,6 +36,26 @@ class AppLocalizationsEn extends AppLocalizations {
   String get scanTitle => 'Scan';
 
   @override
+  String get scanPermissionDenied => 'Camera access is blocked';
+
+  @override
+  String get scanPermissionStepsApp =>
+      'Allow camera access for this app in your phone\'s Settings, then come back and tap Retry.';
+
+  @override
+  String get scanPermissionStepsWeb =>
+      'Allow camera access for this site in your browser, then tap Retry.\n\niPhone Safari: Settings → Safari → Camera → Ask or Allow (or tap the aA icon in the address bar → Website Settings → Camera).\nChrome / Android: tap the lock icon next to the address → Permissions → Camera → Allow.';
+
+  @override
+  String get scanOpenSettingsCta => 'Open settings';
+
+  @override
+  String get scanCameraError => 'Couldn\'t start the camera.';
+
+  @override
+  String get scanInvalidCode => 'This QR code isn\'t an item code.';
+
+  @override
   String get itemCreateTitle => 'Create item';
 
   @override
@@ -86,7 +106,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get itemFormColorLabel => 'Color code';
 
   @override
-  String get itemFormColorHint => '#FF8800';
+  String get itemFormColorHint => 'e.g. 1024';
+
+  @override
+  String get itemFormSectionImages => 'Images';
+
+  @override
+  String get itemFormAddImagesCta => 'Add images';
+
+  @override
+  String get itemFormImagesUploadError =>
+      'The item was saved, but its images couldn\'t be uploaded.';
 
   @override
   String get itemFormSectionSize => 'Size';
@@ -137,9 +167,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get itemFormInvalidNumber => 'Enter a valid number.';
 
   @override
-  String get itemFormInvalidColor => 'Enter a valid hex color, e.g. #FF8800.';
-
-  @override
   String get itemFormLoadError => 'Couldn\'t load form data.';
 
   @override
@@ -174,6 +201,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get itemDetailsSectionDetails => 'Details';
 
   @override
+  String get itemDetailsUnitMeter => 'm';
+
+  @override
+  String get itemFormUnitLabel => 'Unit';
+
+  @override
   String get itemDetailsUnitCm => 'cm';
 
   @override
@@ -189,14 +222,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get itemFormSizeTypeHeight => 'Height';
 
   @override
-  String get itemFormFixedHeightLabel => 'Fixed height (cm)';
+  String get itemFormFixedHeightLabel => 'Fixed height';
 
   @override
-  String get itemFormFixedWidthLabel => 'Fixed width (cm)';
+  String get itemFormFixedWidthLabel => 'Fixed width';
 
   @override
   String get itemFormAreaHint =>
-      'Area items are entered in m² when ordered — nothing to set here.';
+      'Area items are measured in m² and entered when ordered — nothing to set here.';
 
   @override
   String get itemFormSaveCta => 'Save changes';
@@ -232,7 +265,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get draftValueLabelHeight => 'Height to order';
 
   @override
-  String get draftValueLabelArea => 'Area to order (m²)';
+  String get draftValueLabelArea => 'Area to order';
 
   @override
   String get draftTitle => 'Order draft';

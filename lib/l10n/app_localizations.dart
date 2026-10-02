@@ -152,6 +152,42 @@ abstract class AppLocalizations {
   /// **'اسکن'**
   String get scanTitle;
 
+  /// Title shown on the scan page when camera permission is denied.
+  ///
+  /// In fa, this message translates to:
+  /// **'دسترسی به دوربین مسدود است'**
+  String get scanPermissionDenied;
+
+  /// Guide shown on the scan page (native app) telling the user how to re-enable camera access.
+  ///
+  /// In fa, this message translates to:
+  /// **'در تنظیمات گوشی، دسترسی دوربین را برای این برنامه مجاز کنید، سپس برگردید و «تلاش مجدد» را بزنید.'**
+  String get scanPermissionStepsApp;
+
+  /// Guide shown on the scan page (web) telling the user how to re-enable camera access in the browser.
+  ///
+  /// In fa, this message translates to:
+  /// **'دسترسی دوربین را برای این سایت در مرورگر مجاز کنید، سپس «تلاش مجدد» را بزنید.\n\nسافاری آیفون: تنظیمات ← Safari ← Camera ← Ask یا Allow (یا روی آیکون aA در نوار آدرس بزنید ← Website Settings ← Camera).\nکروم / اندروید: روی آیکون قفل کنار آدرس بزنید ← Permissions ← Camera ← Allow.'**
+  String get scanPermissionStepsWeb;
+
+  /// Button on the scan page that opens the OS app settings.
+  ///
+  /// In fa, this message translates to:
+  /// **'باز کردن تنظیمات'**
+  String get scanOpenSettingsCta;
+
+  /// Shown on the scan page when the camera fails to start.
+  ///
+  /// In fa, this message translates to:
+  /// **'راه‌اندازی دوربین ناموفق بود.'**
+  String get scanCameraError;
+
+  /// Toast shown when a scanned QR code isn't an item code.
+  ///
+  /// In fa, this message translates to:
+  /// **'این کد QR مربوط به کالا نیست.'**
+  String get scanInvalidCode;
+
   /// Title of the item-creation form page.
   ///
   /// In fa, this message translates to:
@@ -248,11 +284,29 @@ abstract class AppLocalizations {
   /// **'کد رنگ'**
   String get itemFormColorLabel;
 
-  /// Placeholder showing the expected hex color format.
+  /// Placeholder showing an example color code (free text).
   ///
   /// In fa, this message translates to:
-  /// **'#FF8800'**
+  /// **'مثلاً 1024'**
   String get itemFormColorHint;
+
+  /// Title of the images section of the item form.
+  ///
+  /// In fa, this message translates to:
+  /// **'تصاویر'**
+  String get itemFormSectionImages;
+
+  /// Button that opens the photo picker to add item images.
+  ///
+  /// In fa, this message translates to:
+  /// **'افزودن تصویر'**
+  String get itemFormAddImagesCta;
+
+  /// Toast shown when the item saved but uploading its images failed.
+  ///
+  /// In fa, this message translates to:
+  /// **'کالا ذخیره شد، اما بارگذاری تصاویر ناموفق بود.'**
+  String get itemFormImagesUploadError;
 
   /// Title of the size/dimension section of the item form.
   ///
@@ -350,12 +404,6 @@ abstract class AppLocalizations {
   /// **'عدد معتبر وارد کنید.'**
   String get itemFormInvalidNumber;
 
-  /// Validation message for an invalid hex color code.
-  ///
-  /// In fa, this message translates to:
-  /// **'رنگ هگز معتبر وارد کنید، مثلاً #FF8800.'**
-  String get itemFormInvalidColor;
-
   /// Shown when the item form fails to load its dropdown data.
   ///
   /// In fa, this message translates to:
@@ -422,6 +470,18 @@ abstract class AppLocalizations {
   /// **'جزئیات'**
   String get itemDetailsSectionDetails;
 
+  /// Unit name for meters, shown after a width/height value.
+  ///
+  /// In fa, this message translates to:
+  /// **'متر'**
+  String get itemDetailsUnitMeter;
+
+  /// Label of the size unit selector / row (cm, m, m²).
+  ///
+  /// In fa, this message translates to:
+  /// **'واحد'**
+  String get itemFormUnitLabel;
+
   /// Unit suffix shown after a width/height value.
   ///
   /// In fa, this message translates to:
@@ -455,13 +515,13 @@ abstract class AppLocalizations {
   /// Label of the fixed-height field, shown for items sold by width.
   ///
   /// In fa, this message translates to:
-  /// **'ارتفاع ثابت (سانتی‌متر)'**
+  /// **'ارتفاع ثابت'**
   String get itemFormFixedHeightLabel;
 
   /// Label of the fixed-width field, shown for items sold by height.
   ///
   /// In fa, this message translates to:
-  /// **'عرض ثابت (سانتی‌متر)'**
+  /// **'عرض ثابت'**
   String get itemFormFixedWidthLabel;
 
   /// Explains why the size section has no fields for area items.
@@ -539,7 +599,7 @@ abstract class AppLocalizations {
   /// Label of the ordered-value field for items sold by area.
   ///
   /// In fa, this message translates to:
-  /// **'مساحت سفارش (متر مربع)'**
+  /// **'مساحت سفارش'**
   String get draftValueLabelArea;
 
   /// Title of the order draft page.

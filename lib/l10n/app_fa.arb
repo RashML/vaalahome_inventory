@@ -36,6 +36,30 @@
   "@scanTitle": {
     "description": "Title of the QR/barcode scan page."
   },
+  "scanPermissionDenied": "دسترسی به دوربین مسدود است",
+  "@scanPermissionDenied": {
+    "description": "Title shown on the scan page when camera permission is denied."
+  },
+  "scanPermissionStepsApp": "در تنظیمات گوشی، دسترسی دوربین را برای این برنامه مجاز کنید، سپس برگردید و «تلاش مجدد» را بزنید.",
+  "@scanPermissionStepsApp": {
+    "description": "Guide shown on the scan page (native app) telling the user how to re-enable camera access."
+  },
+  "scanPermissionStepsWeb": "دسترسی دوربین را برای این سایت در مرورگر مجاز کنید، سپس «تلاش مجدد» را بزنید.\n\nسافاری آیفون: تنظیمات ← Safari ← Camera ← Ask یا Allow (یا روی آیکون aA در نوار آدرس بزنید ← Website Settings ← Camera).\nکروم / اندروید: روی آیکون قفل کنار آدرس بزنید ← Permissions ← Camera ← Allow.",
+  "@scanPermissionStepsWeb": {
+    "description": "Guide shown on the scan page (web) telling the user how to re-enable camera access in the browser."
+  },
+  "scanOpenSettingsCta": "باز کردن تنظیمات",
+  "@scanOpenSettingsCta": {
+    "description": "Button on the scan page that opens the OS app settings."
+  },
+  "scanCameraError": "راه‌اندازی دوربین ناموفق بود.",
+  "@scanCameraError": {
+    "description": "Shown on the scan page when the camera fails to start."
+  },
+  "scanInvalidCode": "این کد QR مربوط به کالا نیست.",
+  "@scanInvalidCode": {
+    "description": "Toast shown when a scanned QR code isn't an item code."
+  },
   "itemCreateTitle": "افزودن کالا",
   "@itemCreateTitle": {
     "description": "Title of the item-creation form page."
@@ -105,9 +129,21 @@
   "@itemFormColorLabel": {
     "description": "Label of the color code field."
   },
-  "itemFormColorHint": "#FF8800",
+  "itemFormColorHint": "مثلاً 1024",
   "@itemFormColorHint": {
-    "description": "Placeholder showing the expected hex color format."
+    "description": "Placeholder showing an example color code (free text)."
+  },
+  "itemFormSectionImages": "تصاویر",
+  "@itemFormSectionImages": {
+    "description": "Title of the images section of the item form."
+  },
+  "itemFormAddImagesCta": "افزودن تصویر",
+  "@itemFormAddImagesCta": {
+    "description": "Button that opens the photo picker to add item images."
+  },
+  "itemFormImagesUploadError": "کالا ذخیره شد، اما بارگذاری تصاویر ناموفق بود.",
+  "@itemFormImagesUploadError": {
+    "description": "Toast shown when the item saved but uploading its images failed."
   },
   "itemFormSectionSize": "ابعاد",
   "@itemFormSectionSize": {
@@ -173,10 +209,6 @@
   "@itemFormInvalidNumber": {
     "description": "Validation message for a numeric field with an invalid value."
   },
-  "itemFormInvalidColor": "رنگ هگز معتبر وارد کنید، مثلاً #FF8800.",
-  "@itemFormInvalidColor": {
-    "description": "Validation message for an invalid hex color code."
-  },
   "itemFormLoadError": "بارگذاری اطلاعات فرم ناموفق بود.",
   "@itemFormLoadError": {
     "description": "Shown when the item form fails to load its dropdown data."
@@ -221,6 +253,14 @@
   "@itemDetailsSectionDetails": {
     "description": "Title of the key-value details section on the item details page."
   },
+  "itemDetailsUnitMeter": "متر",
+  "@itemDetailsUnitMeter": {
+    "description": "Unit name for meters, shown after a width/height value."
+  },
+  "itemFormUnitLabel": "واحد",
+  "@itemFormUnitLabel": {
+    "description": "Label of the size unit selector / row (cm, m, m²)."
+  },
   "itemDetailsUnitCm": "سانتی‌متر",
   "@itemDetailsUnitCm": {
     "description": "Unit suffix shown after a width/height value."
@@ -241,11 +281,11 @@
   "@itemFormSizeTypeHeight": {
     "description": "Label of the height option in the item form's dimension-kind selector."
   },
-  "itemFormFixedHeightLabel": "ارتفاع ثابت (سانتی‌متر)",
+  "itemFormFixedHeightLabel": "ارتفاع ثابت",
   "@itemFormFixedHeightLabel": {
     "description": "Label of the fixed-height field, shown for items sold by width."
   },
-  "itemFormFixedWidthLabel": "عرض ثابت (سانتی‌متر)",
+  "itemFormFixedWidthLabel": "عرض ثابت",
   "@itemFormFixedWidthLabel": {
     "description": "Label of the fixed-width field, shown for items sold by height."
   },
@@ -297,7 +337,7 @@
   "@draftValueLabelHeight": {
     "description": "Label of the ordered-value field for items sold by height."
   },
-  "draftValueLabelArea": "مساحت سفارش (متر مربع)",
+  "draftValueLabelArea": "مساحت سفارش",
   "@draftValueLabelArea": {
     "description": "Label of the ordered-value field for items sold by area."
   },
