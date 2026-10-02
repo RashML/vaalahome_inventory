@@ -1,7 +1,9 @@
 import 'package:dropdown_flutter/custom_dropdown.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
+import 'package:inventory_app/features/item/data/item_image_service.dart';
 import 'package:inventory_app/l10n/app_localizations.dart';
 import 'package:inventory_app/shared/data/repository.dart';
 import 'package:inventory_app/shared/di/locator.dart';
@@ -11,11 +13,15 @@ import 'package:inventory_app/shared/models/currency.dart';
 import 'package:inventory_app/shared/models/dimension.dart';
 import 'package:inventory_app/shared/models/item.dart';
 import 'package:inventory_app/shared/models/price.dart';
+import 'package:inventory_app/shared/models/size_unit.dart';
+import 'package:inventory_app/shared/utils/size_unit_l10n.dart';
 import 'package:inventory_app/shared/utils/thousands_input_formatter.dart';
 import 'package:inventory_app/shared/widgets/cta_button.dart';
 import 'item_form_options.dart';
+import 'item_images_field.dart';
 
-final _hexColorPattern = RegExp(r'^#?[0-9A-Fa-f]{6}$');
+/// Matches the `images` field's max file count in PocketBase.
+const _maxImages = 8;
 
 /// Pinned to `en` so the grouping separator is always the comma
 /// [ThousandsInputFormatter.parse] strips, whatever the app locale is.
@@ -42,7 +48,7 @@ class ItemForm extends StatefulWidget {
   /// Called with the form's item once it validates. It owns the whole
   /// outcome — persisting, reporting failure, navigating on success — so it
   /// must not let errors escape; the form only drives the loading state.
-  final Future<void> Function(Item item) onSubmit;
+  final Future<void> Function(Item item, ItemImageChanges images) onSubmit;
 
   @override
   State<ItemForm> createState() => _ItemFormState();
@@ -71,6 +77,11 @@ class _ItemFormState extends State<ItemForm> {
   CurrencyOption? _buyCurrency;
   CurrencyOption? _sellCurrency;
   DimensionKind _dimensionKind = DimensionKind.width;
+  SizeUnit _sizeUnit = SizeUnit.cm;
+
+  late final List<String> _storedImages = [...?widget.initialItem?.imageNames];
+  final List<String> _removedImages = [];
+  final List<NewItemImage> _newImages = [];
 
   List<BundleOption> get _bundlesForSelectedCompany {
     final companyId = _selectedCompany?.company.id;
@@ -108,6 +119,7 @@ class _ItemFormState extends State<ItemForm> {
     _buyAmountController.text = _formatAmount(item.buyPrice.amount);
     _sellAmountController.text = _formatAmount(item.sellPrice.amount);
     _dimensionKind = item.size.kind;
+    _sizeUnit = item.size.unit;
 
     switch (item.size) {
       case WidthDimension(:final fixedHeight):
@@ -183,15 +195,40 @@ class _ItemFormState extends State<ItemForm> {
     return null;
   }
 
+  bool get _canAddImages => _storedImages.length + _newImages.length < _maxImages;
+
+  Future<void> _pickImages() async {
+    final room = _maxImages - _storedImages.length - _newImages.length;
+    if (room <= 0) return;
+    try {
+      // Downscaled so a phone photo stays well under the 5 MB upload limit.
+      final picked = await ImagePicker().pickMultiImage(
+        maxWidth: 1600,
+        maxHeight: 1600,
+        imageQuality: 85,
+        limit: room,
+      );
+      final images = [
+        for (final file in picked.take(room))
+          NewItemImage(name: file.name, bytes: await file.readAsBytes()),
+      ];
+      if (mounted && images.isNotEmpty) setState(() => _newImages.addAll(images));
+    } catch (_) {
+      // Picker dismissed or permission refused: nothing to add.
+    }
+  }
+
   Dimension _buildDimension() {
     return switch (_dimensionKind) {
       DimensionKind.width => WidthDimension(
           fixedHeight: ThousandsInputFormatter.parse(_fixedHeightController.text),
+          unit: _sizeUnit,
         ),
       DimensionKind.height => HeightDimension(
           fixedWidth: ThousandsInputFormatter.parse(_fixedWidthController.text),
+          unit: _sizeUnit,
         ),
-      DimensionKind.area => const AreaDimension(),
+      DimensionKind.area => AreaDimension(unit: _sizeUnit),
     };
   }
 
@@ -200,8 +237,7 @@ class _ItemFormState extends State<ItemForm> {
 
     setState(() => _submitting = true);
     try {
-      final rawColor = _colorController.text.trim().toUpperCase();
-      final colorCode = rawColor.startsWith('#') ? rawColor : '#$rawColor';
+      final colorCode = _colorController.text.trim();
 
       final item = Item(
         // Empty when creating — Item.toJson() drops it and PocketBase assigns
@@ -223,7 +259,10 @@ class _ItemFormState extends State<ItemForm> {
         ),
       );
 
-      await widget.onSubmit(item);
+      await widget.onSubmit(
+        item,
+        ItemImageChanges(added: List.of(_newImages), removed: List.of(_removedImages)),
+      );
     } finally {
       if (mounted) setState(() => _submitting = false);
     }
@@ -332,6 +371,24 @@ class _ItemFormState extends State<ItemForm> {
             ),
             const SizedBox(height: 20),
             _FormSection(
+              title: l10n.itemFormSectionImages,
+              children: [
+                ItemImagesField(
+                  itemId: widget.initialItem?.id ?? '',
+                  storedNames: _storedImages,
+                  newImages: _newImages,
+                  canAddMore: _canAddImages,
+                  onAdd: _pickImages,
+                  onRemoveStored: (name) => setState(() {
+                    _storedImages.remove(name);
+                    _removedImages.add(name);
+                  }),
+                  onRemoveNew: (image) => setState(() => _newImages.remove(image)),
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+            _FormSection(
               title: l10n.itemFormSectionSize,
               children: [
                 SegmentedButton<DimensionKind>(
@@ -350,10 +407,29 @@ class _ItemFormState extends State<ItemForm> {
                     ),
                   ],
                   selected: {_dimensionKind},
-                  onSelectionChanged: (selection) =>
-                      setState(() => _dimensionKind = selection.first),
+                  onSelectionChanged: (selection) => setState(() {
+                    _dimensionKind = selection.first;
+                    // Keep the chosen unit when the new kind allows it,
+                    // otherwise fall back to that kind's default (cm / m²).
+                    if (!_dimensionKind.allowedUnits.contains(_sizeUnit)) {
+                      _sizeUnit = _dimensionKind.defaultUnit;
+                    }
+                  }),
                 ),
                 const SizedBox(height: 16),
+                if (_dimensionKind.allowedUnits.length > 1) ...[
+                  _fieldLabel(context, l10n.itemFormUnitLabel),
+                  SegmentedButton<SizeUnit>(
+                    segments: [
+                      for (final unit in _dimensionKind.allowedUnits)
+                        ButtonSegment(value: unit, label: Text(unit.label(l10n))),
+                    ],
+                    selected: {_sizeUnit},
+                    onSelectionChanged: (selection) =>
+                        setState(() => _sizeUnit = selection.first),
+                  ),
+                  const SizedBox(height: 16),
+                ],
                 // Only the axis the item is *not* sold by is fixed on the item
                 // itself; the other one is entered per order. Area items have
                 // no fixed axis at all.
@@ -362,14 +438,20 @@ class _ItemFormState extends State<ItemForm> {
                       controller: _fixedHeightController,
                       keyboardType: const TextInputType.numberWithOptions(decimal: true),
                       inputFormatters: [ThousandsInputFormatter()],
-                      decoration: InputDecoration(labelText: l10n.itemFormFixedHeightLabel),
+                      decoration: InputDecoration(
+                        labelText: l10n.itemFormFixedHeightLabel,
+                        suffixText: _sizeUnit.label(l10n),
+                      ),
                       validator: (v) => _optionalNumberValidator(v, l10n),
                     ),
                   DimensionKind.height => TextFormField(
                       controller: _fixedWidthController,
                       keyboardType: const TextInputType.numberWithOptions(decimal: true),
                       inputFormatters: [ThousandsInputFormatter()],
-                      decoration: InputDecoration(labelText: l10n.itemFormFixedWidthLabel),
+                      decoration: InputDecoration(
+                        labelText: l10n.itemFormFixedWidthLabel,
+                        suffixText: _sizeUnit.label(l10n),
+                      ),
                       validator: (v) => _optionalNumberValidator(v, l10n),
                     ),
                   DimensionKind.area => Text(
@@ -394,7 +476,7 @@ class _ItemFormState extends State<ItemForm> {
                   inputFormatters: [ThousandsInputFormatter()],
                   decoration: InputDecoration(
                     labelText: l10n.itemFormAmountLabel,
-                    prefixText: _buyCurrency != null ? '${_buyCurrency!.currency.code}  ' : null,
+                    prefixText: _buyCurrency != null ? '${_buyCurrency!.currency.shortLabel}  ' : null,
                   ),
                   validator: (v) => _numberValidator(v, l10n),
                 ),
@@ -425,7 +507,7 @@ class _ItemFormState extends State<ItemForm> {
                   decoration: InputDecoration(
                     labelText: l10n.itemFormAmountLabel,
                     prefixText:
-                        _sellCurrency != null ? '${_sellCurrency!.currency.code}  ' : null,
+                        _sellCurrency != null ? '${_sellCurrency!.currency.shortLabel}  ' : null,
                   ),
                   validator: (v) => _numberValidator(v, l10n),
                 ),
@@ -477,7 +559,6 @@ String? _optionalNumberValidator(String? value, AppLocalizations l10n) {
 
 String? _colorValidator(String? value, AppLocalizations l10n) {
   if (value == null || value.trim().isEmpty) return l10n.itemFormRequiredField;
-  if (!_hexColorPattern.hasMatch(value.trim())) return l10n.itemFormInvalidColor;
   return null;
 }
 

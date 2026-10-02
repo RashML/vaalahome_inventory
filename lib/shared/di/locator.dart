@@ -6,6 +6,7 @@ import 'package:inventory_app/features/auth/auth_service.dart';
 import 'package:inventory_app/features/auth/data/auth_repository.dart';
 import 'package:inventory_app/features/auth/data/pocketbase_auth_repository.dart';
 import 'package:inventory_app/features/camera/permission/camera_permission_manager.dart';
+import 'package:inventory_app/features/item/data/item_image_service.dart';
 import 'package:inventory_app/features/camera/permission/permission_handler_camera_permission_manager.dart';
 import 'package:inventory_app/features/order/data/draft_order_service.dart';
 import 'package:inventory_app/shared/data/pocketbase_repository.dart';
@@ -43,6 +44,8 @@ Future<void> setupLocator({String pocketBaseUrl = 'http://127.0.0.1:8090'}) asyn
   getIt.registerSingleton<CameraPermissionManager>(
     PermissionHandlerCameraPermissionManager(),
   );
+
+  getIt.registerSingleton<ItemImageService>(ItemImageService(pb));
 
   getIt.registerSingleton<Repository<Company>>(
     PocketBaseRepository<Company>(

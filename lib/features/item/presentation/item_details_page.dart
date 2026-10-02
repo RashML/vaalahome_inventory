@@ -5,6 +5,7 @@ import 'package:inventory_app/features/auth/auth_service.dart';
 import 'package:inventory_app/features/auth/models/user.dart';
 import 'package:inventory_app/features/item/presentation/item_edit_page.dart';
 import 'package:inventory_app/features/item/presentation/widgets/item_detail_row.dart';
+import 'package:inventory_app/features/item/presentation/widgets/item_image_strip.dart';
 import 'package:inventory_app/features/item/presentation/widgets/item_price_section.dart';
 import 'package:inventory_app/features/order/presentation/widgets/add_to_draft_card.dart';
 import 'package:inventory_app/l10n/app_localizations.dart';
@@ -15,6 +16,7 @@ import 'package:inventory_app/shared/models/company.dart';
 import 'package:inventory_app/shared/models/currency.dart';
 import 'package:inventory_app/shared/models/dimension.dart';
 import 'package:inventory_app/shared/models/item.dart';
+import 'package:inventory_app/shared/utils/dimension_format.dart';
 
 /// Reached from [ScanPage] on a detected QR/barcode, or from any item list.
 ///
@@ -133,7 +135,9 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
     final item = _item!;
 
     return ListView(
-      padding: const EdgeInsets.fromLTRB(20, 20, 20, 32),
+      // Bottom inset clears the floating draft button (56 + 16 margin) so it
+      // never covers the last details row.
+      padding: const EdgeInsets.fromLTRB(20, 20, 20, 104),
       children: [
         ItemPriceSection(
           sellPrice: item.sellPrice,
@@ -143,10 +147,12 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
           isAdmin: isAdmin,
         ),
         const SizedBox(height: 24),
-        AddToDraftCard(item: item, sellCurrency: _sellCurrency!),
-        const SizedBox(height: 24),
         Text(l10n.itemDetailsSectionDetails, style: Theme.of(context).textTheme.titleLarge),
         const SizedBox(height: 8),
+        if (item.imageNames.isNotEmpty) ...[
+          ItemImageStrip(itemId: item.id, imageNames: item.imageNames),
+          const SizedBox(height: 12),
+        ],
         Card(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -166,40 +172,26 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
             ),
           ),
         ),
+        const SizedBox(height: 24),
+        AddToDraftCard(
+          item: item,
+          sellCurrency: _sellCurrency!,
+          companyName: _company!.name,
+          bundleName: _bundle?.name,
+        ),
       ],
     );
   }
 
-  /// The axis the item is sold by, plus its fixed counterpart when it has one.
+  /// A single "dimension" row, e.g. "ارتفاع ۱۵۰ سانتی‌متر".
   List<Widget> _dimensionRows(AppLocalizations l10n, Dimension size) {
-    final soldBy = switch (size.kind) {
-      DimensionKind.width => l10n.itemFormSizeTypeWidth,
-      DimensionKind.height => l10n.itemFormSizeTypeHeight,
-      DimensionKind.area => l10n.itemFormSizeTypeArea,
-    };
-
-    final fixed = switch (size) {
-      WidthDimension(:final fixedHeight) when fixedHeight != null => (
-          l10n.itemFormHeightLabel,
-          '${_trimNumber(fixedHeight)} ${l10n.itemDetailsUnitCm}',
-        ),
-      HeightDimension(:final fixedWidth) when fixedWidth != null => (
-          l10n.itemFormWidthLabel,
-          '${_trimNumber(fixedWidth)} ${l10n.itemDetailsUnitCm}',
-        ),
-      _ => null,
-    };
-
+    final locale = Localizations.localeOf(context).toString();
     return [
       const Divider(height: 1),
-      ItemDetailRow(label: l10n.itemDetailsDimensionLabel, value: soldBy),
-      if (fixed != null) ...[
-        const Divider(height: 1),
-        ItemDetailRow(label: fixed.$1, value: fixed.$2),
-      ],
+      ItemDetailRow(
+        label: l10n.itemFormSectionSize,
+        value: describeDimension(l10n, size, locale),
+      ),
     ];
   }
-
-  String _trimNumber(double value) =>
-      value == value.roundToDouble() ? value.toStringAsFixed(0) : value.toString();
 }

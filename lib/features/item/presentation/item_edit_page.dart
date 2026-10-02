@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:inventory_app/features/item/data/item_image_service.dart';
 import 'package:inventory_app/l10n/app_localizations.dart';
 import 'package:inventory_app/shared/data/repository.dart';
 import 'package:inventory_app/shared/di/locator.dart';
@@ -57,17 +58,28 @@ class _ItemEditPageState extends State<ItemEditPage> {
     }
   }
 
-  Future<void> _save(Item item) async {
+  Future<void> _save(Item item, ItemImageChanges images) async {
     try {
       await getIt<Repository<Item>>().update(widget.itemId, item);
-      if (!mounted) return;
-      AppToast.show(context, AppLocalizations.of(context)!.itemFormUpdateSuccess);
-      // `true` tells the details page its data is stale and to reload.
-      context.pop(true);
     } catch (_) {
       if (!mounted) return;
       AppToast.error(context, AppLocalizations.of(context)!.itemFormUpdateError);
+      return;
     }
+
+    try {
+      await getIt<ItemImageService>().apply(widget.itemId, images);
+    } catch (_) {
+      if (!mounted) return;
+      AppToast.error(context, AppLocalizations.of(context)!.itemFormImagesUploadError);
+      // The fields did save, so the details page still needs to reload.
+      context.pop(true);
+      return;
+    }
+    if (!mounted) return;
+    AppToast.show(context, AppLocalizations.of(context)!.itemFormUpdateSuccess);
+    // `true` tells the details page its data is stale and to reload.
+    context.pop(true);
   }
 
   @override
