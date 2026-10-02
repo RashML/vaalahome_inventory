@@ -25,6 +25,9 @@ class Item {
   /// The item's color code, if any.
   final String? colorCode;
 
+  /// File names of the item's pictures (see `ItemImageService` for URLs).
+  final List<String> imageNames;
+
   /// The price this item was bought for.
   final Price buyPrice;
 
@@ -38,6 +41,7 @@ class Item {
     required this.companyId,
     required this.size,
     this.colorCode,
+    this.imageNames = const [],
     required this.buyPrice,
     required this.sellPrice,
   });
@@ -55,6 +59,7 @@ class Item {
         record.data['size'] as Map<String, dynamic>,
       ),
       colorCode: colorCode.isEmpty ? null : colorCode,
+      imageNames: record.getListValue<String>('images'),
       buyPrice: Price.fromJson(
         record.data['buyPrice'] as Map<String, dynamic>,
       ),
