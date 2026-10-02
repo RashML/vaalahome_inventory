@@ -14,6 +14,9 @@ class PermissionHandlerCameraPermissionManager implements CameraPermissionManage
     return _map(await Permission.camera.request());
   }
 
+  @override
+  Future<bool> openSettings() => openAppSettings();
+
   CameraPermissionState _map(PermissionStatus status) {
     return switch (status) {
       PermissionStatus.granted || PermissionStatus.limited || PermissionStatus.provisional =>

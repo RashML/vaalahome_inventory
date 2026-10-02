@@ -28,6 +28,10 @@ abstract interface class CameraPermissionManager {
   Future<CameraPermissionState> checkStatus();
 
   Future<CameraPermissionState> request();
+
+  /// Opens the OS settings page for this app, where the user can re-enable
+  /// camera access. Returns false when it couldn't be opened.
+  Future<bool> openSettings();
 }
 
 extension CameraPermissionManagerX on CameraPermissionManager {

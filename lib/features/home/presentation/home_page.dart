@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
             children: [
               CtaButton(
                 label: l10n.homeScanCta,
-                onPressed: () => context.go(ScanPage.path),
+                onPressed: () => context.push(ScanPage.path),
               ),
               const SizedBox(height: 16),
               CtaButton(
