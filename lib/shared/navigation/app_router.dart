@@ -23,8 +23,8 @@ import 'splash_page.dart';
 /// (e.g. [LoginPage] needs no explicit "go to home" call on success — once
 /// [AuthService.status] flips, the redirect sends it there).
 ///
-/// Every authenticated route is wrapped in [DraftFabScaffold], which is what
-/// puts the order-draft floating button on the whole app.
+/// Every authenticated route except [DraftPage] is wrapped in
+/// [DraftFabScaffold], which puts the order-draft floating button on them.
 ///
 /// Flow: [HomePage] -> [ScanPage] or [ItemCreatePage].
 /// [ScanPage] on a detected code -> [ItemDetailsPage].
@@ -45,11 +45,14 @@ class AppRouter {
           path: LoginPage.path,
           builder: (context, state) => const LoginPage(),
         ),
+        // Outside the shell on purpose: the draft page is opened *from* the
+        // shell's floating draft button, so it must not show that button.
+        GoRoute(
+          path: DraftPage.path,
+          builder: (context, state) => const DraftPage(),
+        ),
         ShellRoute(
-          builder: (context, state, child) => DraftFabScaffold(
-            location: state.matchedLocation,
-            child: child,
-          ),
+          builder: (context, state, child) => DraftFabScaffold(child: child),
           routes: [
             GoRoute(
               path: HomePage.path,
@@ -58,10 +61,6 @@ class AppRouter {
             GoRoute(
               path: ScanPage.path,
               builder: (context, state) => const ScanPage(),
-            ),
-            GoRoute(
-              path: DraftPage.path,
-              builder: (context, state) => const DraftPage(),
             ),
             // Declared before the '/items/:id' route so the literal segment
             // wins over the path parameter.

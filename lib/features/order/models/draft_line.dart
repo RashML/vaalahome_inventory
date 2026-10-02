@@ -14,6 +14,11 @@ class DraftLine {
   /// line was added.
   final Currency sellCurrency;
 
+  /// Names of the item's company and bundle, snapshotted when the line was
+  /// added so the draft can describe the item without fetching it again.
+  final String? companyName;
+  final String? bundleName;
+
   /// The value entered for the item's variable axis
   /// (width, height, or m² — see [Item.size]).
   final double value;
@@ -22,6 +27,8 @@ class DraftLine {
     required this.item,
     required this.sellCurrency,
     required this.value,
+    this.companyName,
+    this.bundleName,
   });
 
   /// The item's sell price converted to Rial, for one unit of its axis.
@@ -34,5 +41,7 @@ class DraftLine {
         item: item,
         sellCurrency: sellCurrency,
         value: value ?? this.value,
+        companyName: companyName,
+        bundleName: bundleName,
       );
 }

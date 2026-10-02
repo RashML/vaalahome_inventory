@@ -6,12 +6,14 @@ import 'package:inventory_app/features/order/models/draft_line.dart';
 import 'package:inventory_app/l10n/app_localizations.dart';
 import 'package:inventory_app/shared/di/locator.dart';
 import 'package:inventory_app/shared/models/dimension.dart';
+import 'package:inventory_app/shared/utils/dimension_format.dart';
+import 'package:inventory_app/shared/utils/size_unit_l10n.dart';
 
 /// The order draft: every line the user has added, with its price in Rial and
 /// a running grand total.
 ///
-/// Reached from the floating draft button, which is available on every
-/// authenticated page.
+/// Reached from the floating draft button (and, being outside the shell
+/// route, doesn't show that button itself).
 class DraftPage extends StatelessWidget {
   static const path = '/draft';
 
@@ -24,13 +26,13 @@ class DraftPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(l10n.draftTitle),
+        title: Text(l10n.draftTitle, style: const TextStyle(fontSize: 18)),
         actions: [
           ListenableBuilder(
             listenable: draft,
             builder: (context, _) => TextButton(
               onPressed: draft.isEmpty ? null : () => _confirmClear(context, draft, l10n),
-              child: Text(l10n.draftClearCta),
+              child: Text(l10n.draftClearCta, style: const TextStyle(fontSize: 13)),
             ),
           ),
         ],
@@ -149,17 +151,15 @@ class _DraftLineCard extends StatelessWidget {
     final amount = NumberFormat('#,##0.##', locale);
 
     final axisLabel = switch (line.item.size.kind) {
-      DimensionKind.width => l10n.itemFormSizeTypeWidth,
-      DimensionKind.height => l10n.itemFormSizeTypeHeight,
-      DimensionKind.area => l10n.itemFormSizeTypeArea,
+      DimensionKind.width => l10n.draftValueLabelWidth,
+      DimensionKind.height => l10n.draftValueLabelHeight,
+      DimensionKind.area => l10n.draftValueLabelArea,
     };
-    final valueSuffix = line.item.size.kind == DimensionKind.area
-        ? ' ${l10n.itemDetailsUnitSquareMeter}'
-        : '';
+    final valueSuffix = ' ${line.item.size.unit.label(l10n)}';
 
     return Card(
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 16, 8, 16),
+        padding: const EdgeInsets.fromLTRB(16, 12, 4, 12),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -169,9 +169,26 @@ class _DraftLineCard extends StatelessWidget {
                 children: [
                   Text(
                     line.item.name,
-                    style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+                    style: theme.textTheme.titleSmall?.copyWith(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w700,
+                      color: theme.colorScheme.onSurface,
+                    ),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 6),
+                  // The item's own details, so a line is recognisable on its
+                  // own without opening the item again.
+                  if (line.companyName != null)
+                    _LineRow(label: l10n.itemFormCompanyLabel, value: line.companyName!),
+                  if (line.bundleName != null)
+                    _LineRow(label: l10n.itemFormBundleLabel, value: line.bundleName!),
+                  if (line.item.colorCode != null)
+                    _LineRow(label: l10n.itemFormColorLabel, value: line.item.colorCode!),
+                  _LineRow(
+                    label: l10n.itemFormSectionSize,
+                    value: describeDimension(l10n, line.item.size, locale),
+                  ),
+                  const Divider(height: 16),
                   _LineRow(
                     label: axisLabel,
                     value: '${amount.format(line.value)}$valueSuffix',
@@ -216,19 +233,32 @@ class _LineRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    const fontSize = 13.0;
+    final labelStyle = theme.textTheme.bodyMedium?.copyWith(fontSize: fontSize);
     final valueStyle = emphasized
-        ? theme.textTheme.bodyLarge?.copyWith(
+        ? theme.textTheme.bodyMedium?.copyWith(
+            fontSize: fontSize + 1,
             color: theme.colorScheme.primary,
             fontWeight: FontWeight.w700,
           )
-        : theme.textTheme.bodyLarge;
+        : theme.textTheme.bodyMedium?.copyWith(
+            fontSize: fontSize,
+            color: theme.colorScheme.onSurface,
+          );
 
+    // Both sides are flexible and may wrap, so nothing is ever clipped or
+    // ellipsized on narrow phones.
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 2),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(child: Text(label, style: theme.textTheme.bodyMedium)),
-          Text(value, style: valueStyle),
+          Expanded(flex: 2, child: Text(label, style: labelStyle)),
+          const SizedBox(width: 8),
+          Expanded(
+            flex: 3,
+            child: Text(value, style: valueStyle, textAlign: TextAlign.end),
+          ),
         ],
       ),
     );
@@ -249,15 +279,26 @@ class _DraftTotalBar extends StatelessWidget {
     return Material(
       color: theme.colorScheme.surfaceContainerHighest,
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
+        padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
         child: Row(
           children: [
-            Expanded(child: Text(l10n.draftTotalLabel, style: theme.textTheme.titleMedium)),
             Text(
-              '${NumberFormat('#,##0', locale).format(totalInRial)} ${l10n.itemDetailsRialSuffix}',
-              style: theme.textTheme.titleLarge?.copyWith(
-                color: theme.colorScheme.primary,
-                fontWeight: FontWeight.w700,
+              l10n.draftTotalLabel,
+              style: theme.textTheme.titleSmall?.copyWith(
+                fontSize: 15,
+                color: theme.colorScheme.onSurface,
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                '${NumberFormat('#,##0', locale).format(totalInRial)} ${l10n.itemDetailsRialSuffix}',
+                textAlign: TextAlign.end,
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontSize: 17,
+                  color: theme.colorScheme.primary,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             ),
           ],

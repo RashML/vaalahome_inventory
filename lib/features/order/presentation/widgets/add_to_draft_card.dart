@@ -8,6 +8,7 @@ import 'package:inventory_app/shared/di/locator.dart';
 import 'package:inventory_app/shared/models/currency.dart';
 import 'package:inventory_app/shared/models/dimension.dart';
 import 'package:inventory_app/shared/models/item.dart';
+import 'package:inventory_app/shared/utils/size_unit_l10n.dart';
 import 'package:inventory_app/shared/utils/thousands_input_formatter.dart';
 import 'package:inventory_app/shared/widgets/app_toast.dart';
 
@@ -22,10 +23,16 @@ class AddToDraftCard extends StatefulWidget {
     super.key,
     required this.item,
     required this.sellCurrency,
+    this.companyName,
+    this.bundleName,
   });
 
   final Item item;
   final Currency sellCurrency;
+
+  /// Carried onto the draft line so the draft page can show them.
+  final String? companyName;
+  final String? bundleName;
 
   @override
   State<AddToDraftCard> createState() => _AddToDraftCardState();
@@ -63,6 +70,8 @@ class _AddToDraftCardState extends State<AddToDraftCard> {
         item: widget.item,
         sellCurrency: widget.sellCurrency,
         value: value,
+        companyName: widget.companyName,
+        bundleName: widget.bundleName,
       ),
     );
     _valueController.clear();
@@ -90,7 +99,10 @@ class _AddToDraftCardState extends State<AddToDraftCard> {
               controller: _valueController,
               keyboardType: const TextInputType.numberWithOptions(decimal: true),
               inputFormatters: [ThousandsInputFormatter()],
-              decoration: InputDecoration(labelText: _valueLabel(l10n)),
+              decoration: InputDecoration(
+                labelText: _valueLabel(l10n),
+                suffixText: widget.item.size.unit.label(l10n),
+              ),
               onChanged: (_) => setState(() {}),
             ),
             const SizedBox(height: 16),

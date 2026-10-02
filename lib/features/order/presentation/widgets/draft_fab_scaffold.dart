@@ -9,38 +9,31 @@ import 'package:inventory_app/shared/di/locator.dart';
 /// Shell around every authenticated page, adding the app-wide floating button
 /// that opens the order draft and badges how many lines it holds.
 ///
-/// The button is hidden on [DraftPage] itself — there is nothing to navigate
-/// to from there.
+/// [DraftPage] is routed outside this shell, so it never shows the button.
 class DraftFabScaffold extends StatelessWidget {
-  const DraftFabScaffold({super.key, required this.child, required this.location});
+  const DraftFabScaffold({super.key, required this.child});
 
   final Widget child;
-
-  /// The route currently shown inside this shell.
-  final String location;
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final draft = getIt<DraftOrderService>();
-    final onDraftPage = location == DraftPage.path;
 
     return Scaffold(
       body: child,
-      floatingActionButton: onDraftPage
-          ? null
-          : ListenableBuilder(
-              listenable: draft,
-              builder: (context, _) {
-                final button = FloatingActionButton(
-                  onPressed: () => context.push(DraftPage.path),
-                  tooltip: l10n.draftFabTooltip,
-                  child: const Icon(Icons.receipt_long_rounded),
-                );
-                if (draft.count == 0) return button;
-                return Badge.count(count: draft.count, child: button);
-              },
-            ),
+      floatingActionButton: ListenableBuilder(
+        listenable: draft,
+        builder: (context, _) {
+          final button = FloatingActionButton(
+            onPressed: () => context.push(DraftPage.path),
+            tooltip: l10n.draftFabTooltip,
+            child: const Icon(Icons.receipt_long_rounded),
+          );
+          if (draft.count == 0) return button;
+          return Badge.count(count: draft.count, child: button);
+        },
+      ),
     );
   }
 }
