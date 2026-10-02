@@ -35,7 +35,6 @@ macos/Pods/
 macos/Podfile.lock
 
 # Web specific
-lib/generated_plugin_registrant.dart
 
 # Sensitive files / Secrets / Environment
 .env
