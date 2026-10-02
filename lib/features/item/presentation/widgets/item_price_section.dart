@@ -12,7 +12,7 @@ const _kDrawerAnimationDuration = Duration(milliseconds: 260);
 
 /// How long an admin must hold the price card before the buy-price drawer
 /// reveals itself.
-const _kHoldToRevealDuration = Duration(seconds: 5);
+const _kHoldToRevealDuration = Duration(seconds: 1);
 
 /// The item's price section: sell price, and its Rial-converted final price.
 ///
@@ -101,7 +101,7 @@ class _ItemPriceSectionState extends State<ItemPriceSection>
                       child: Text(l10n.itemDetailsSellPriceLabel, style: theme.textTheme.bodyMedium),
                     ),
                     Text(
-                      '${_formatAmount(widget.sellPrice.amount, locale)} ${widget.sellCurrency.code}',
+                      '${_formatAmount(widget.sellPrice.amount, locale)} ${widget.sellCurrency.shortLabel}',
                       style: theme.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w600),
                     ),
                   ],
@@ -126,21 +126,6 @@ class _ItemPriceSectionState extends State<ItemPriceSection>
                     ),
                   ],
                 ),
-                if (widget.isAdmin) ...[
-                  const SizedBox(height: 12),
-                  Row(
-                    children: [
-                      Icon(Icons.touch_app_outlined, size: 16, color: theme.colorScheme.onSurfaceVariant),
-                      const SizedBox(width: 6),
-                      Expanded(
-                        child: Text(
-                          l10n.itemDetailsHoldHint,
-                          style: theme.textTheme.bodySmall,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
               ],
             ),
           ),
@@ -179,7 +164,7 @@ class _ItemPriceSectionState extends State<ItemPriceSection>
                                 style: theme.textTheme.bodySmall?.copyWith(color: Colors.white),
                               ),
                               Text(
-                                '${_formatAmount(widget.buyPrice.amount, locale)} ${widget.buyCurrency.code}',
+                                '${_formatAmount(widget.buyPrice.amount, locale)} ${widget.buyCurrency.shortLabel}',
                                 style: theme.textTheme.titleMedium?.copyWith(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w700,
@@ -201,6 +186,7 @@ class _ItemPriceSectionState extends State<ItemPriceSection>
     if (!widget.isAdmin) return card;
 
     return RawGestureDetector(
+      behavior: HitTestBehavior.opaque,
       gestures: {
         LongPressGestureRecognizer:
             GestureRecognizerFactoryWithHandlers<LongPressGestureRecognizer>(
